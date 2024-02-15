@@ -32,6 +32,7 @@ Untuk mencapai tujuan tersebut, hal yang perlu dilakukan adalah sebagai berikut:
 - Melakukan *improvement* pada model dengan menggunakan hyperparameter tuning
 
 ## Data Understanding
+
 Data yang digunakan adalah data [Occupancy Detection](https://archive.ics.uci.edu/dataset/357/occupancy+detection) oleh Luis Candanedo. 
 
 ### Deskripsi Variable
@@ -39,8 +40,12 @@ Data yang digunakan adalah data [Occupancy Detection](https://archive.ics.uci.ed
 Variable-variable yang ada pada dataset tersebut adalah sebagai berikut:
 
 - Temperature: merupakan suhu ruangan dalam satuan Celsius
-- Humidity: merupakan kelembapan relatif dalam persentase
-- Light: merupakan tingkat keterangan cahaya dalam satuan Lux
+- Humidity: merupakan kelembapan relatif dalam satuan persentase
+- Light: merupakan intensitas penerangan cahaya dalam satuan Lux
+- CO2: merupakan konsentrasi molekul karbon dioksida di udara dalam satuan ppm
+- Humidity Ratio: merupakan fitur turunan dari Temperature dan Humidity dalam satuan kgwater-vapor/kg-air
+- Occupancy: merupakan deteksi hunian ruangan - 0 artinya tidak berpenghuni, 1 artinya berpenghuni
+
 
 ### Exploratory Data Analysis
 
@@ -50,7 +55,11 @@ Berikut adahal hasil analisis dari data tersebut:
 
 2. Plot histogram kelas
 
-3. Plot fitur-fitur dibandingkan dengan 
+3. Plot fitur-fitur dibandingkan dengan fitur occupancy
+
+4. Boxplot
+
+5. Correlation Matrix
 
 Paragraf awal bagian ini menjelaskan informasi mengenai data yang Anda gunakan dalam proyek. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
 
