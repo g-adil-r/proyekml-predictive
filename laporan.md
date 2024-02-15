@@ -2,25 +2,17 @@
 
 ## Domain Proyek
 
-Pada bagian ini, kamu perlu menuliskan latar belakang yang relevan dengan proyek yang diangkat.
-
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Jelaskan mengapa dan bagaimana masalah tersebut harus diselesaikan
-- Menyertakan hasil riset terkait atau referensi. Referensi yang diberikan harus berasal dari sumber yang kredibel dan author yang jelas.
-  
-  Format Referensi: [Judul Referensi](https://scholar.google.com/) 
-
 ### Pendahuluan
 
-Deteksi hunian (*occupation detection*) menentukan apakah suatu ruangan sedang dihuni oleh seseorang menggunakan data yang didapat dari sensor, misalnya sensor cahaya, suhu, kelembapan, atau CO2. Deteksi hunian merupakan komponen penting di bidang Internet of Things (IoT), terutama dalam konteks *smart building*. Informasi dari deteksi hunian dapat digunakan untuk mengelola dan mengontrol bangunan secara lebih cerdas, misalnya untuk ventilasi, pemanasan, pendinginan, dan efisiensi energi. Penentuan deteksi hunian yang akurat pada sebuah bangunan dapat membantu dalam penghematan energi. Oleh karena itu, penting untuk menemukan cara mendeteksi hunian dari sebuah bangunan dengan efektif.
+Deteksi hunian (*occupation detection*) menentukan apakah suatu ruangan sedang dihuni oleh seseorang menggunakan data yang didapat dari sensor, misalnya sensor cahaya, suhu, kelembapan, atau CO2. Deteksi hunian merupakan komponen penting di bidang Internet of Things (IoT), terutama dalam konteks *smart building*. Deteksi hunian dapat digunakan untuk mengontrol bangunan secara lebih cerdas, misalnya untuk ventilasi, lampu, pemanas, dan pendingin pada mangunan. Deteksi hunian yang akurat pada sebuah bangunan dapat membantu dalam penghematan energi. Oleh karenanya, penting untuk menemukan cara mendeteksi hunian dari sebuah bangunan dengan efektif.
 
-Teknik pembelajaran mesin (*machine learning*) telah banyak diterapkan dalam banyak domain, yang mengarah pada peningkatan aplikasinya untuk analisis kinerja, prediksi, dan evaluasi sistem. Dalam konteks deteksi hunian, mekanisme pembelajaran mesin dan pengenalan pola dapat digunakan untuk menganalisis data sensor yang dikumpulkan dan menentukan apakah suatu ruangan sedang dihuni atau tidak.
+Teknik pembelajaran mesin (*machine learning*) telah banyak diterapkan dalam banyak bidang, yang mengarah pada peningkatan aplikasinya untuk analisis kinerja, prediksi, dan evaluasi sistem. Dalam konteks deteksi hunian, pembelajaran mesin dapat digunakan untuk menganalisis data sensor yang dikumpulkan dan menentukan apakah suatu ruangan sedang dihuni atau tidak.
 
-### Refernsi terkait
+### Referensi Terkait
 
-Sebuah studi berjudul ["Occupancy Detection in Room Using Sensor Data"](https://arxiv.org/abs/2101.03616) oleh Mohammadhossein Toutiaee memberikan solusi untuk mendeteksi hunian menggunakan data sensor dengan menguji beberapa variabel. Studi tersebut menunjukkan bahwa menentukan kehadiran lingkungan dalam ruangan dapat dilakukan dengan menganalisis data yang dikumpulkan dan menggunakan mekanisme pembelajaran mesin dan pengenalan pola.
+Sebuah studi berjudul ["Occupancy Detection in Room Using Sensor Data"](https://arxiv.org/abs/2101.03616) oleh Mohammadhossein Toutiaee memberikan solusi untuk deteksi hunian menggunakan data sensor. Studi tersebut menunjukkan bahwa pendeteksian hunian dalam suatu ruangan dapat dilakukan dengan menganalisis data yang dikumpulkan dan menggunakan pembelajaran mesin.
 
-Dalam studi lain yang berjudul ["Promoting Occupancy Detection Accuracy Using On-Device Lifelong Learning"](https://ieeexplore.ieee.org/abstract/document/10081223) oleh Muhammad Emad-Ud-Din *et al* membahas bagaimana akurasi deteksi algoritma pembelajaran mesin bergantung pada keragaman dataset yang dikumpulkan.
+Studi lain yang berjudul ["Promoting Occupancy Detection Accuracy Using On-Device Lifelong Learning"](https://ieeexplore.ieee.org/abstract/document/10081223) oleh Muhammad Emad-Ud-Din dan Ya Wang menyebutkan bahwa akurasi deteksi pembelajaran mesin bergantung pada keragaman dataset yang dikumpulkan.
 
 ## Business Understanding
 
