@@ -28,8 +28,8 @@
 
 ### Solution statements
 &nbsp;&nbsp;&nbsp;&nbsp;Untuk mencapai tujuan tersebut, hal yang perlu dilakukan adalah sebagai berikut:
-- Membuat model *machine learning* dengan menggunakan algoritma Random Forest
-- Melakukan *improvement* pada model dengan menggunakan hyperparameter tuning
+- Membuat baseline model *machine learning*
+- Membuat model dengan algoritma Random Forest dan melakukan hyperparameter tuning
 
 ## 3. Data Understanding
 
@@ -44,22 +44,27 @@ Variable-variable yang ada pada dataset tersebut adalah sebagai berikut:
 - Light: merupakan intensitas penerangan cahaya dalam satuan Lux
 - CO2: merupakan konsentrasi molekul karbon dioksida di udara dalam satuan ppm
 - Humidity Ratio: merupakan fitur turunan dari Temperature dan Humidity dalam satuan kgwater-vapor/kg-air
-- Occupancy: merupakan deteksi hunian ruangan - 0 artinya tidak berpenghuni, 1 artinya berpenghuni
-
+- Occupancy: merupakan deteksi hunian ruangan, didapat dari gambar yang diambil setiap menitnya. 0 artinya tidak berpenghuni, 1 artinya berpenghuni
 
 ### Exploratory Data Analysis
 
-Berikut adahal hasil analisis dari data tersebut:
+Berikut adalah hasil analisis dari data tersebut:
 
 1. Plot kemunculan kelas
 
-   Berikut adalah plot kemunculan kategori 0 dan 1 pada fitur Occupancy
+    Berikut adalah plot kemunculan kelas 0 (tidak berpenghuni) dan 1 (berpenghuni) pada fitur Occupancy
 
-   ![](pic/03-01.png)
+    ![](pic/03-01.png)
 
+    Terlihat bahwa kelas 1 lebih sedikit muncul daripada kelas 0. Hal ini dapat mempengaruhi model.
 
+2. Plot histogram fitur
 
-2. Plot histogram kelas
+    Berikut adalah diagram histogram pada masing-masing fitur numerik pada data
+
+    ![](pic/03-02.png)
+
+    Dari diagram diatas, terlihat bahwa fitur Light dan CO2 
 
 3. Plot fitur-fitur dibandingkan dengan fitur occupancy
 
