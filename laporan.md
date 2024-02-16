@@ -60,29 +60,44 @@ Berikut adalah hasil analisis dari data tersebut:
 
 2. Plot histogram fitur
 
-    Berikut adalah diagram histogram pada masing-masing fitur numerik pada data
+    Berikut adalah grafik histogram pada masing-masing fitur numerik pada data
 
     ![](pic/03-02.png)
 
-    Dari diagram diatas, terlihat bahwa fitur Light dan CO2 
+    Dari grafik diatas, terlihat bahwa fitur Light dan CO2 sebagian besar berukuran kecil, fitur Light banyak di bawah 100, dan CO2 banyak di bawah 600.
 
-3. Plot fitur-fitur dibandingkan dengan fitur occupancy
+3. Boxplot
 
-4. Boxplot
+    Berikut adalah diagram boxplot dari masing-masing fitur numerik, dikelompokkan berdasarkan kelas
+
+    ![](pic/03-03.png)
+
+4. Plot fitur-fitur dibandingkan dengan fitur occupancy
+
+    Berikut adalah grafik plot masing-masing fitur numerik, dibandingkan dengan fitur occupancy. Garis biru menandakan data dari kelas occupied (kelas 1), sedangkan garis jingga menandakan data dari kelas not occupied (kelas 0)
+
+    ![](pic/03-04.png)
+
+    Disini, terdapat perbedaan data pada kelas occupied dan not occupied, terutama pada fitur light dan CO2.
 
 5. Correlation Matrix
 
-Paragraf awal bagian ini menjelaskan informasi mengenai data yang Anda gunakan dalam proyek. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
+    Metode Pearson, yang merupakan default pada `df.corr()`, umumnya digunakan untuk memeriksa korelasi dari dua fitur kontinyu. Pada data yang digunakan, fitur occupancy merupakan fitur diskret, sedangkan fitur lainnya adalah fitur kontinyu, sehingga kurang cocok menggunakan metode Pearson.
 
-Selanjutnya uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:  
+    Disini, metode tes korelasi yang digunakan adalah metode *Cramer's V* atau koefisien Cramer dengan rumus
 
-### Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
-- accepts : merupakan jenis pembayaran yang diterima pada restoran tertentu.
-- cuisine : merupakan jenis masakan yang disajikan pada restoran.
-- dst
+    ![](pic/03-05.png)
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data atau exploratory data analysis.
+    - χ2 = Nilai statistik Chi-square
+    - n = Ukuran contoh total
+    - r = Jumlah baris tabel kontingensi
+    - c = Jumlah kolom tabel kontingensi
+
+    Dengan menggunakan metode tersebut, didapat Correlation Matrix sebagai berikut:
+
+    ![](pic/03-06.png)
+
+    Dari matrix diatas, didapat bahwa fitur Occupancy berkorelasi tinggi dengan fitur Light, tertinggi kedua dengan fitur CO2, lalu HumidityRatio, kemudian Temperature, terakhir dengan Humidity.
 
 ## Data Preparation
 Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
