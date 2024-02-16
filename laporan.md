@@ -132,6 +132,8 @@ Berikut adalah hasil analisis dari data tersebut:
 
 3. Membagi data menjadi data training dan data validasi
 
+    Data dibagi menjadi dua, yakni data training dan data validasi. Data training akan digunakan untuk pelatihan algoritma, sedangkan data validasi akan digunakan untuk evaluasi model. Data validasi sebesar 10% dari total data.
+
     ```py
     x = dfset.drop(columns=('Occupancy'))
     y = dfset.Occupancy
@@ -160,20 +162,64 @@ Berikut adalah hasil analisis dari data tersebut:
 
 5. Oversampling dengan metode SMOTE
 
-    Data kelas occupied (kelas 1) jauh lebih sedikit dari data kelas not occupied (kelas 0). Hal ini dapat memberikan bias pada model. Untuk mencegahnya, dilakukan oversampling ddengan menggunakan meotde SMOTE
+    Data kelas occupied (kelas 1) jauh lebih sedikit dari data kelas not occupied (kelas 0). Hal ini dapat memberikan bias pada model. Untuk mencegahnya, dilakukan oversampling dengan menggunakan meotde SMOTE
 
     ```py
     smote = SMOTE(random_state=1)
     xTrainResampled, yTrainResampled = smote.fit_resample(xTrain, yTrain) 
     ```
 
-## Modeling
-Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Anda perlu menjelaskan tahapan dan parameter yang digunakan pada proses pemodelan.
+## 5. Modeling
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan kelebihan dan kekurangan dari setiap algoritma yang digunakan.
-- Jika menggunakan satu algoritma pada solution statement, lakukan proses improvement terhadap model dengan hyperparameter tuning. **Jelaskan proses improvement yang dilakukan**.
-- Jika menggunakan dua atau lebih algoritma pada solution statement, maka pilih model terbaik sebagai solusi. **Jelaskan mengapa memilih model tersebut sebagai model terbaik**.
+Model yang digunakan untuk deteksi hunian ini adalah model Random Forest Classifier. Random Forest adalah model ensemble yang terdiri dari beberapa model decision tree. Tiap model decision tree memiliki hyperparameter yang berbeda dan dilatih pada beberapa bagian (subset) data yang berbeda. Prediksi akhir diambil dari prediksi terbanyak pada seluruh tree.
+
+Kelebihan dari algoritma ini adalah:
+- Mampu menangani noise dan variasi dalam data
+- Dapat menangani data non-linear dengan baik
+- Risiko overfitting lebih rendah
+- Akurasi yang lebih baik daripada algoritma klasifikasi lainnya
+
+Sedangkan kekurangan dari algoritma ini adalah:
+- Sulit menginterpretasikan pengaruh setiap fitur dalam membuat keputusan
+- Sulit menangani data dengan fitur yang sangat banyak atau data berdimensi tinggi
+- Membutuhkan banyak proses komputasi
+- Waktu komputasi pada dataset berskala besar relatif lambat
+
+Proses improvement pada model akan dilakukan dengan hyperparameter tuning. Tuning ini akan dilakukan dengan menggunakan grid search. Hyperparameter yang akan di-tune adalah sebagai berikut:
+
+- n_estimator (jumlah tree pada model): 50, 100, 150, 200, 250, 300
+- max_depth (maksimal depth tiap tree): None, 5, 10, 15, 20
+
+Tahapan melakukan modellingnya adalah sebagai berikut:
+
+1. Membuat baseline model
+
+    ```py
+    baselineModel = DummyClassifier(random_state=1)
+    ```
+
+2. Melatih baseline model
+
+    ```py
+    baselineModel.fit(xTrainResampled, yTrainResampled)
+    ```
+
+3. Inisiasi Grid Search
+
+    ```py
+    paramGrid = {
+        'n_estimators': [50, 100, 150, 200, 250, 300],
+        'max_depth': [None, 5, 10, 15, 20],
+    }
+
+    gridSearch = GridSearchCV(RandomForestClassifier(random_state=1), param_grid=paramGrid)
+    ```
+
+4. Melakukan Grid Search pada model Random Forest
+
+    ```py
+    gridSearch.fit(xTrainResampled, yTrainResampled)
+    ```
 
 ## Evaluation
 Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
