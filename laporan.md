@@ -4,47 +4,52 @@
 
 ### Latar Belakang
 
-&nbsp;&nbsp;&nbsp;&nbsp;Deteksi hunian (*occupation detection*) menentukan apakah suatu ruangan sedang dihuni oleh seseorang menggunakan data yang didapat dari sensor, misalnya sensor cahaya, suhu, kelembapan, atau CO2. Deteksi hunian merupakan komponen penting di bidang Internet of Things (IoT), terutama dalam konteks *smart building*. Deteksi hunian dapat digunakan untuk mengontrol bangunan secara lebih cerdas, misalnya untuk ventilasi, lampu, pemanas, dan pendingin pada bangunan. Deteksi hunian yang akurat pada sebuah bangunan dapat membantu dalam penghematan energi. Oleh karenanya, penting untuk menemukan cara mendeteksi hunian dari sebuah bangunan dengan efektif.
+Deteksi hunian (*occupation detection*) menentukan apakah suatu ruangan sedang dihuni oleh seseorang menggunakan data yang didapat dari sensor, misalnya sensor cahaya, suhu, kelembapan, atau CO2. Deteksi hunian merupakan komponen penting di bidang Internet of Things (IoT), terutama dalam konteks *smart building*. Deteksi hunian dapat digunakan untuk mengontrol bangunan secara lebih cerdas, misalnya untuk ventilasi, lampu, pemanas, dan pendingin pada bangunan. Deteksi hunian yang akurat pada sebuah bangunan dapat membantu dalam penghematan energi. Oleh karenanya, penting untuk menemukan cara mendeteksi hunian dari sebuah bangunan dengan efektif.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Teknik pembelajaran mesin atau *machine learning* telah banyak diterapkan dalam banyak bidang, yang mengarah pada peningkatan aplikasinya untuk analisis kinerja, prediksi, dan evaluasi sistem. Dalam konteks deteksi hunian, *machine learning* dapat digunakan untuk menganalisis data sensor yang dikumpulkan dan menentukan apakah suatu ruangan sedang dihuni atau tidak.
+Teknik pembelajaran mesin atau *machine learning* telah banyak diterapkan dalam banyak bidang, yang mengarah pada peningkatan aplikasinya untuk analisis kinerja, prediksi, dan evaluasi sistem. Dalam konteks deteksi hunian, *machine learning* dapat digunakan untuk menganalisis data sensor yang dikumpulkan dan menentukan apakah suatu ruangan sedang dihuni atau tidak.
 
 ### Referensi Terkait
 
-&nbsp;&nbsp;&nbsp;&nbsp;Sebuah studi berjudul ["Occupancy Detection in Room Using Sensor Data"](https://arxiv.org/abs/2101.03616) oleh Mohammadhossein Toutiaee memberikan solusi untuk deteksi hunian menggunakan data sensor. Studi tersebut menunjukkan bahwa pendeteksian hunian dalam suatu ruangan dapat dilakukan dengan menganalisis data yang dikumpulkan dan menggunakan *machine learning*.
+Sebuah studi berjudul ["Occupancy Detection in Room Using Sensor Data"](https://arxiv.org/abs/2101.03616) oleh Mohammadhossein Toutiaee memberikan solusi untuk deteksi hunian menggunakan data sensor. Studi tersebut menunjukkan bahwa pendeteksian hunian dalam suatu ruangan dapat dilakukan dengan menganalisis data yang dikumpulkan dan menggunakan *machine learning*.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Studi lain yang berjudul ["Promoting Occupancy Detection Accuracy Using On-Device Lifelong Learning"](https://ieeexplore.ieee.org/abstract/document/10081223) oleh Muhammad Emad-Ud-Din dan Ya Wang menyebutkan bahwa akurasi deteksi *machine learning* bergantung pada keragaman dataset yang dikumpulkan.
+Studi lain yang berjudul ["Promoting Occupancy Detection Accuracy Using On-Device Lifelong Learning"](https://ieeexplore.ieee.org/abstract/document/10081223) oleh Muhammad Emad-Ud-Din dan Ya Wang menyebutkan bahwa akurasi deteksi *machine learning* bergantung pada keragaman dataset yang dikumpulkan.
 
 ## 2. Business Understanding
 
 ### Problem Statements
-&nbsp;&nbsp;&nbsp;&nbsp;Berdasarkan latar belakang di atas, perlu dikembangkan sebuah sistem deteksi hunian untuk menjawab permasalahan berikut:
+Berdasarkan latar belakang di atas, perlu dikembangkan sebuah sistem deteksi hunian untuk menjawab permasalahan berikut:
 - Dari serangkaian fitur yang ada, fitur apa yang paling berpengaruh terhadap deteksi hunian?
 - Berdasarkan fitur tertentu, apa hasil deteksi hunian yang tepat?
 
 ### Goals
-&nbsp;&nbsp;&nbsp;&nbsp;Untuk menjawab pertanyaan tersebut, *predictive modelling* dibuat dengan tujuan atau *goals* sebagai berikut:
+Untuk menjawab pertanyaan tersebut, *predictive modelling* dibuat dengan tujuan atau *goals* sebagai berikut:
 - Menentukan fitur yang paling berpengaruh terhadap deteksi hunian
 - Membuat model *machine learning* yang dapat memprediksi hunian seakurat mungkin berdasarkan fitur-fitur yang ada
 
 ### Solution statements
-&nbsp;&nbsp;&nbsp;&nbsp;Untuk mencapai tujuan tersebut, hal yang perlu dilakukan adalah sebagai berikut:
+Untuk mencapai tujuan tersebut, hal yang perlu dilakukan adalah sebagai berikut:
 - Membuat baseline model *machine learning*
 - Membuat model dengan algoritma Random Forest dan melakukan hyperparameter tuning
 
 ## 3. Data Understanding
 
-&nbsp;&nbsp;&nbsp;&nbsp;Data yang digunakan adalah data [Occupancy Detection](https://archive.ics.uci.edu/dataset/357/occupancy+detection) oleh Luis Candanedo. 
+Data yang digunakan adalah data [Occupancy Detection](https://archive.ics.uci.edu/dataset/357/occupancy+detection) oleh Luis Candanedo. Data ini memiliki 8143 sampel dengan 7 fitur, yakni date, Temperature, Humidity, Light, CO2, HumidityRatio, dan Occupancy
 
 ### Deskripsi Variable
 
 Variable-variable yang ada pada dataset tersebut adalah sebagai berikut:
 
+- date: merupakan waktu data diperoleh
 - Temperature: merupakan suhu ruangan dalam satuan Celsius
 - Humidity: merupakan kelembapan relatif dalam satuan persentase
 - Light: merupakan intensitas penerangan cahaya dalam satuan Lux
 - CO2: merupakan konsentrasi molekul karbon dioksida di udara dalam satuan ppm
-- Humidity Ratio: merupakan fitur turunan dari Temperature dan Humidity dalam satuan kgwater-vapor/kg-air
+- HumidityRatio: merupakan fitur turunan dari Temperature dan Humidity dalam satuan kg-uap-air/kg-udara
 - Occupancy: merupakan deteksi hunian ruangan, didapat dari gambar yang diambil setiap menitnya. 0 artinya tidak berpenghuni, 1 artinya berpenghuni
+
+Berikut adalah hasil `df.describe()` dari data:
+
+![](pic/03-00.png)
 
 ### Exploratory Data Analysis
 
@@ -150,17 +155,7 @@ Berikut adalah hasil analisis dari data tersebut:
     Jumlah data validasi: 793
     ```
 
-4. Normalisasi Data
-
-    ```py
-    scaler = StandardScaler()
-    scaler.fit(xTrain)
-
-    xTrain = scaler.transform(xTrain)
-    xTest = scaler.transform(xTest)
-    ```
-
-5. Oversampling dengan metode SMOTE
+4. Oversampling dengan metode SMOTE
 
     Data kelas occupied (kelas 1) jauh lebih sedikit dari data kelas not occupied (kelas 0). Hal ini dapat memberikan bias pada model. Untuk mencegahnya, dilakukan oversampling dengan menggunakan meotde SMOTE
 
@@ -194,11 +189,15 @@ Tahapan melakukan modellingnya adalah sebagai berikut:
 
 1. Membuat baseline model
 
+    Parameter *random_state* digunakan agar dapat memberikan hasil konsisten setiap kali menjalankan notebook
+
     ```py
     baselineModel = DummyClassifier(random_state=1)
     ```
 
 2. Melatih baseline model
+
+    Model dilatih dengan training data yang sudah dilakukan SMOTE
 
     ```py
     baselineModel.fit(xTrainResampled, yTrainResampled)
@@ -222,6 +221,13 @@ Tahapan melakukan modellingnya adalah sebagai berikut:
     ```
 
 ## Evaluation
+
+Metrik evaluasi model yang akan digunakan adalah sebagai berikut:
+
+1. Accuracy
+
+    Accuracy adalah persentase hasil prediksi benar oleh model. 
+
 Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
 
 Sebagai contoh, Anda memiih kasus klasifikasi dan menggunakan metrik **akurasi, precision, recall, dan F1 score**. Jelaskan mengenai beberapa hal berikut:
