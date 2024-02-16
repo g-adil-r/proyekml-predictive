@@ -97,14 +97,75 @@ Berikut adalah hasil analisis dari data tersebut:
 
     ![](pic/03-06.png)
 
-    Dari matrix diatas, didapat bahwa fitur Occupancy berkorelasi tinggi dengan fitur Light, tertinggi kedua dengan fitur CO2, lalu HumidityRatio, kemudian Temperature, terakhir dengan Humidity.
+    Dari matrix diatas, didapat bahwa fitur Occupancy berkorelasi tinggi dengan fitur Light, tertinggi kedua dengan fitur CO2, lalu HumidityRatio, kemudian Temperature, terakhir dengan Humidity. Semuanya berkorelasi cukup tinggi dengan nilai koefisiennya diatas 0.6
 
-## Data Preparation
-Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
+## 4. Data Preparation
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan proses data preparation yang dilakukan
-- Menjelaskan alasan mengapa diperlukan tahapan data preparation tersebut.
+1. Drop fitur HumidityRatio dan date
+
+    Fitur date adalah fitur timestamp unik dari masing-masing data. Fitur HumidityRatio adalah fitur turunan dari humidity dan temperature. Kedua fitur didrop untuk mengurangi kompleksitas data dan model
+
+    ```py
+    dfset = df.drop(columns=['date', 'HumidityRatio'])
+    ```
+
+2. Membuang outlier
+
+    Data dengan jarak 3 standar deviasi atau lebih dibuang dari dataset. Hal ini berusaha untuk membuang outlier pada data, tanpa mempengaruhi jumlah data dari masing-masing kelas secara signifikan.
+
+    ```py
+    for column in dfset.columns:
+        dfset = dfset[np.abs(dfset[column] - dfset[column].mean()) <= 3*dfset[column].std()]
+    ```
+
+    Kemudian kita periksa jumlah data yang tersisa dengan menggunakan kode berikut
+
+    ```py
+    dfset.shape
+    ```
+
+    Didapat hasilnya adalah sebagai berikut:
+
+    ```
+    (7926, 5)
+    ```
+
+3. Membagi data menjadi data training dan data validasi
+
+    ```py
+    x = dfset.drop(columns=('Occupancy'))
+    y = dfset.Occupancy
+    xTrain, xTest, yTrain, yTest = train_test_split(x, y, test_size = 0.1, random_state = 1)
+
+    print(f'Jumlah data training: {len(xTrain)}')
+    print(f'Jumlah data validasi: {len(xTest)}')
+    ```
+
+    Hasilnya adalah sebagai berikut:
+
+    ```
+    Jumlah data training: 7133
+    Jumlah data validasi: 793
+    ```
+
+4. Normalisasi Data
+
+    ```py
+    scaler = StandardScaler()
+    scaler.fit(xTrain)
+
+    xTrain = scaler.transform(xTrain)
+    xTest = scaler.transform(xTest)
+    ```
+
+5. Oversampling dengan metode SMOTE
+
+    Data kelas occupied (kelas 1) jauh lebih sedikit dari data kelas not occupied (kelas 0). Hal ini dapat memberikan bias pada model. Untuk mencegahnya, dilakukan oversampling ddengan menggunakan meotde SMOTE
+
+    ```py
+    smote = SMOTE(random_state=1)
+    xTrainResampled, yTrainResampled = smote.fit_resample(xTrain, yTrain) 
+    ```
 
 ## Modeling
 Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Anda perlu menjelaskan tahapan dan parameter yang digunakan pada proses pemodelan.
