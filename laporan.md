@@ -33,7 +33,7 @@ Untuk mencapai tujuan tersebut, hal yang perlu dilakukan adalah sebagai berikut:
 
 ## 3. Data Understanding
 
-Data yang digunakan adalah data [Occupancy Detection](https://archive.ics.uci.edu/dataset/357/occupancy+detection) oleh Luis Candanedo. Data ini memiliki 8143 sampel dengan 7 fitur, yakni date, Temperature, Humidity, Light, CO2, HumidityRatio, dan Occupancy
+Data yang digunakan adalah data [Occupancy Detection](https://archive.ics.uci.edu/dataset/357/occupancy+detection) oleh Luis Candanedo. Data ini memiliki 20560 sampel data dengan 7 fitur, yakni date, Temperature, Humidity, Light, CO2, HumidityRatio, dan Occupancy
 
 ### Deskripsi Variable
 
@@ -49,7 +49,7 @@ Variable-variable yang ada pada dataset tersebut adalah sebagai berikut:
 
 Berikut adalah hasil `df.describe()` dari data:
 
-![](pic/03-00.png)
+![](pic/03-01.png)
 
 ### Exploratory Data Analysis
 
@@ -59,7 +59,7 @@ Berikut adalah hasil analisis dari data tersebut:
 
     Berikut adalah plot kemunculan kelas 0 (tidak berpenghuni) dan 1 (berpenghuni) pada fitur Occupancy
 
-    ![](pic/03-01.png)
+    ![](pic/03-02.png)
 
     Terlihat bahwa kelas 1 lebih sedikit muncul daripada kelas 0. Hal ini dapat mempengaruhi model.
 
@@ -67,23 +67,21 @@ Berikut adalah hasil analisis dari data tersebut:
 
     Berikut adalah grafik histogram pada masing-masing fitur numerik pada data
 
-    ![](pic/03-02.png)
+    ![](pic/03-03.png)
 
     Dari grafik diatas, terlihat bahwa fitur Light dan CO2 sebagian besar berukuran kecil, fitur Light banyak di bawah 100, dan CO2 banyak di bawah 600.
 
-3. Boxplot
+3. Plot histogram fitur tiap kelas
 
-    Berikut adalah diagram boxplot dari masing-masing fitur numerik, dikelompokkan berdasarkan kelas
-
-    ![](pic/03-03.png)
-
-4. Plot fitur-fitur dibandingkan dengan fitur occupancy
-
-    Berikut adalah grafik plot masing-masing fitur numerik, dibandingkan dengan fitur occupancy. Garis biru menandakan data dari kelas occupied (kelas 1), sedangkan garis jingga menandakan data dari kelas not occupied (kelas 0)
+    Berikut adalah grafik histogram tiap fitur numerik pada data, dikelompokkan berdasarkan kelas
 
     ![](pic/03-04.png)
 
-    Disini, terdapat perbedaan data pada kelas occupied dan not occupied, terutama pada fitur light dan CO2.
+4. Boxplot
+
+    Berikut adalah diagram boxplot dari masing-masing fitur numerik, dikelompokkan berdasarkan kelas
+
+    ![](pic/03-05.png)
 
 5. Correlation Matrix
 
@@ -91,7 +89,7 @@ Berikut adalah hasil analisis dari data tersebut:
 
     Disini, metode tes korelasi yang digunakan adalah metode *Cramer's V* atau koefisien Cramer dengan rumus
 
-    ![](pic/03-05.png)
+    ![](pic/03-06.png)
 
     - χ2 = Nilai statistik Chi-square
     - n = Ukuran contoh total
@@ -100,7 +98,7 @@ Berikut adalah hasil analisis dari data tersebut:
 
     Dengan menggunakan metode tersebut, didapat Correlation Matrix sebagai berikut:
 
-    ![](pic/03-06.png)
+    ![](pic/03-07.png)
 
     Dari matrix diatas, didapat bahwa fitur Occupancy berkorelasi tinggi dengan fitur Light, tertinggi kedua dengan fitur CO2, lalu HumidityRatio, kemudian Temperature, terakhir dengan Humidity. Semuanya berkorelasi cukup tinggi dengan nilai koefisiennya diatas 0.6
 
@@ -116,11 +114,21 @@ Berikut adalah hasil analisis dari data tersebut:
 
 2. Membuang outlier
 
-    Data dengan jarak 3 standar deviasi atau lebih dibuang dari dataset. Hal ini berusaha untuk membuang outlier pada data, tanpa mempengaruhi jumlah data dari masing-masing kelas secara signifikan.
+    Outlier pada data dari masing-masing class dibuang.
 
     ```py
-    for column in dfset.columns:
-        dfset = dfset[np.abs(dfset[column] - dfset[column].mean()) <= 3*dfset[column].std()]
+    def is_outlier(group):
+        Q1 = group.quantile(0.25)
+        Q3 = group.quantile(0.75)
+        IQR = Q3 - Q1
+
+        lower_limit = Q1-1.5*IQR
+        upper_limit = Q3+1.5*IQR
+        
+        return ~group.between(lower_limit, upper_limit)
+
+    for column in ['Temperature', 'Humidity', 'Light', 'CO2']:
+        dfset = dfset[~dfset.groupby('Occupancy', group_keys=False)[column].apply(is_outlier)]
     ```
 
     Kemudian kita periksa jumlah data yang tersisa dengan menggunakan kode berikut
@@ -132,7 +140,7 @@ Berikut adalah hasil analisis dari data tersebut:
     Didapat hasilnya adalah sebagai berikut:
 
     ```
-    (7926, 5)
+    (15838, 5)
     ```
 
 3. Membagi data menjadi data training dan data validasi
@@ -151,11 +159,20 @@ Berikut adalah hasil analisis dari data tersebut:
     Hasilnya adalah sebagai berikut:
 
     ```
-    Jumlah data training: 7133
-    Jumlah data validasi: 793
+    Jumlah data training: 14254
+    Jumlah data validasi: 1584
     ```
 
-4. Oversampling dengan metode SMOTE
+4. Normalisasi Data
+
+    ```py
+    scaler = StandardScaler().fit(xTrain)
+
+    xTrainScaled = scaler.transform(xTrain)
+    xTestScaled = scaler.transform(xTest)
+    ```
+
+5. Oversampling dengan metode SMOTE
 
     Data kelas occupied (kelas 1) jauh lebih sedikit dari data kelas not occupied (kelas 0). Hal ini dapat memberikan bias pada model. Untuk mencegahnya, dilakukan oversampling dengan menggunakan meotde SMOTE
 
@@ -180,10 +197,10 @@ Sedangkan kekurangan dari algoritma ini adalah:
 - Membutuhkan banyak proses komputasi
 - Waktu komputasi pada dataset berskala besar relatif lambat
 
-Proses improvement pada model akan dilakukan dengan hyperparameter tuning. Tuning ini akan dilakukan dengan menggunakan grid search. Hyperparameter yang akan di-tune adalah sebagai berikut:
+Proses improvement pada model akan dilakukan dengan hyperparameter tuning. Tuning ini akan dilakukan dengan menggunakan random search. Hyperparameter yang akan di-tune adalah sebagai berikut:
 
-- n_estimator (jumlah tree pada model): 50, 100, 150, 200, 250, 300
-- max_depth (maksimal depth tiap tree): None, 5, 10, 15, 20
+- n_estimator (jumlah tree pada model): 100, 150, 200, 250, dst sampai 500
+- max_depth (maksimal depth tiap tree): 3 sampai 20
 
 Tahapan melakukan modellingnya adalah sebagai berikut:
 
@@ -192,7 +209,7 @@ Tahapan melakukan modellingnya adalah sebagai berikut:
     Parameter *random_state* digunakan agar dapat memberikan hasil konsisten setiap kali menjalankan notebook
 
     ```py
-    baselineModel = DummyClassifier(random_state=1)
+    baselineModel = RandomForestClassifier(random_state=1)
     ```
 
 2. Melatih baseline model
@@ -203,21 +220,33 @@ Tahapan melakukan modellingnya adalah sebagai berikut:
     baselineModel.fit(xTrainResampled, yTrainResampled)
     ```
 
-3. Inisiasi Grid Search
+3. Inisiasi Random Search
 
     ```py
     paramGrid = {
-        'n_estimators': [50, 100, 150, 200, 250, 300],
-        'max_depth': [None, 5, 10, 15, 20],
+        'n_estimators': range(100, 500, 50),
+        'max_depth': range(3, 20),
     }
 
-    gridSearch = GridSearchCV(RandomForestClassifier(random_state=1), param_grid=paramGrid)
+    search = RandomizedSearchCV(RandomForestClassifier(random_state=1), paramGrid, random_state=1)
     ```
 
-4. Melakukan Grid Search pada model Random Forest
+4. Melakukan Random Search pada model Random Forest
 
     ```py
-    gridSearch.fit(xTrainResampled, yTrainResampled)
+    search.fit(xTrainResampled, yTrainResampled)
+    ```
+
+    Hasil parameter terbaik pada random search tersebut adalah sebagai berikut:
+
+    ```py
+    search.best_params_
+    ```
+
+    Hasilnya adalah sebagai berikut:
+
+    ```
+    {'n_estimators': 200, 'max_depth': 8}
     ```
 
 ## Evaluation
