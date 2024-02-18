@@ -100,7 +100,7 @@ Berikut adalah hasil analisis dari data tersebut:
 
     ![](pic/03-07.png)
 
-    Dari matrix diatas, didapat bahwa fitur Occupancy berkorelasi tinggi dengan fitur Light, tertinggi kedua dengan fitur CO2, lalu HumidityRatio, kemudian Temperature, terakhir dengan Humidity. Semuanya berkorelasi cukup tinggi dengan nilai koefisiennya diatas 0.6
+    
 
 ## 4. Data Preparation
 
@@ -249,13 +249,33 @@ Tahapan melakukan modellingnya adalah sebagai berikut:
     {'n_estimators': 200, 'max_depth': 8}
     ```
 
-## Evaluation
+## 6. Evaluation
 
 Metrik evaluasi model yang akan digunakan adalah sebagai berikut:
 
-1. Accuracy
+1. Confusion Matrix
 
-    Accuracy adalah persentase hasil prediksi benar oleh model. 
+    Confusion Matrix berisi jumlah prediksi model dibandingkan dengan hasil yang sebenarnya
+
+2. Accuracy
+    
+    Accuracy adalah persentase hasil prediksi benar oleh model.
+
+3. Precision
+
+    Precision adalah jumlah true positive dari semua positive yang memang sudah diprediksi
+
+4. Recall
+
+    Recall adalah jumlah label positive yang memang benar-benar positif
+
+5. F1-score
+
+    Rumus F1-score adalah sebagai berikut
+
+    ![](pic/06-01.png)
+
+
 
 Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
 
