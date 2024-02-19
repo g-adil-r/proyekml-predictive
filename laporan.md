@@ -33,11 +33,11 @@ Untuk mencapai tujuan tersebut, hal yang perlu dilakukan adalah sebagai berikut:
 
 ## 3. Data Understanding
 
-Data yang digunakan adalah data [Occupancy Detection](https://archive.ics.uci.edu/dataset/357/occupancy+detection) oleh Luis Candanedo. Data ini memiliki 20560 sampel data dengan 7 fitur, yakni date, Temperature, Humidity, Light, CO2, HumidityRatio, dan Occupancy
+Dataset yang digunakan adalah dataset [Occupancy Detection](https://archive.ics.uci.edu/dataset/357/occupancy+detection) oleh Luis Candanedo. Dataset ini memiliki 20560 sampel data dengan 7 fitur, yakni date, Temperature, Humidity, Light, CO2, HumidityRatio, dan Occupancy
 
 ### Deskripsi Variable
 
-Variable-variable yang ada pada dataset tersebut adalah sebagai berikut:
+Variable-variable yang ada pada dataset adalah sebagai berikut:
 
 - date: merupakan waktu data diperoleh
 - Temperature: merupakan suhu ruangan dalam satuan Celsius
@@ -45,7 +45,7 @@ Variable-variable yang ada pada dataset tersebut adalah sebagai berikut:
 - Light: merupakan intensitas penerangan cahaya dalam satuan Lux
 - CO2: merupakan konsentrasi molekul karbon dioksida di udara dalam satuan ppm
 - HumidityRatio: merupakan fitur turunan dari Temperature dan Humidity dalam satuan kg-uap-air/kg-udara
-- Occupancy: merupakan deteksi hunian ruangan, didapat dari gambar yang diambil setiap menitnya. 0 artinya tidak berpenghuni, 1 artinya berpenghuni
+- Occupancy: merupakan deteksi hunian ruangan, didapat dari gambar yang diambil setiap menitnya. 0 artinya tidak berpenghuni (Not Occupied), 1 artinya berpenghuni (Occupied)
 
 Berikut adalah hasil `df.describe()` dari data:
 
@@ -61,7 +61,7 @@ Berikut adalah hasil analisis dari data tersebut:
 
     ![](pic/03-02.png)
 
-    Terlihat bahwa kelas 1 lebih sedikit muncul daripada kelas 0. Hal ini dapat mempengaruhi model.
+    Terlihat bahwa kelas Occupied lebih sedikit dari kelas Not Occupied. Hal ini dapat mempengaruhi model.
 
 2. Plot histogram fitur
 
@@ -69,13 +69,20 @@ Berikut adalah hasil analisis dari data tersebut:
 
     ![](pic/03-03.png)
 
-    Dari grafik diatas, terlihat bahwa fitur Light dan CO2 sebagian besar berukuran kecil, fitur Light banyak di bawah 100, dan CO2 banyak di bawah 600.
+    Dari grafik diatas, terlihat bahwa fitur Light dan CO2 sebagian besar berukuran kecil - fitur Light banyak di bawah 100, dan CO2 banyak di bawah 600. Fitur lainnya memiliki persebaran yang lebih normal
 
 3. Plot histogram fitur tiap kelas
 
-    Berikut adalah grafik histogram tiap fitur numerik pada data, dikelompokkan berdasarkan kelas
+    Berikut adalah grafik histogram tiap fitur numerik pada data, dikelompokkan berdasarkan kelas.
 
     ![](pic/03-04.png)
+
+    Dari grafik diatas, didapat observasi sebagai berikut:
+
+    - Data temperature pada kelas Not Occupied rata-rata ada di antara 20 dan 21, sedangkan pada kelas Occupied, rata-ratanya ada di sekitar 22
+    - Data light pada kelas Not Occupied sebagian besar ada di bawah 250, sedangkan pada kelas Occupied rata-ratanya ada di sekitar 500
+    - Data CO2 pada kelas Not Occupied sebagian besar ada di bawah 750, sedangkan pada kelas Occupied datanya lebih merata pada rentang 500 sampai 1500
+    - Tidak terlalu nampak perbedaan besar data Humidity Ratio dan Humidity pada kedua kelas selain perbedaan jumlah datanya, yang sudah terlihat dari plot jumlah kelas
 
 4. Boxplot
 
@@ -83,25 +90,29 @@ Berikut adalah hasil analisis dari data tersebut:
 
     ![](pic/03-05.png)
 
+    Dari grafik diatas, terlihat ada beberapa outlier pada data, terutama outlier dari masing-masing kelas.
+
 5. Correlation Matrix
 
     Metode Pearson, yang merupakan default pada `df.corr()`, umumnya digunakan untuk memeriksa korelasi dari dua fitur kontinyu. Pada data yang digunakan, fitur occupancy merupakan fitur diskret, sedangkan fitur lainnya adalah fitur kontinyu, sehingga kurang cocok menggunakan metode Pearson.
 
-    Disini, metode tes korelasi yang digunakan adalah metode *Cramer's V* atau koefisien Cramer dengan rumus
+    Disini, metode tes korelasi yang digunakan adalah metode *Cramer's V* atau koefisien Cramer yang lebih sesuai untuk kondisi tersebut. Koefisien Cramer dapat dicari dengan rumus
 
     ![](pic/03-06.png)
 
     - χ2 = Nilai statistik Chi-square
-    - n = Ukuran contoh total
+    - n = Jumlah observasi
     - r = Jumlah baris tabel kontingensi
     - c = Jumlah kolom tabel kontingensi
+
+    Koefisien bernilai mendekati 1 menandakan korelasi yang kuat, sedangkan koefisien bernilai mendekati 0 menandakan korelasi yang lemah.
 
     Dengan menggunakan metode tersebut, didapat Correlation Matrix sebagai berikut:
 
     ![](pic/03-07.png)
 
+    Dari gambar diatas, terlihat bahwa fitur Light berkorelasi paling tinggi dengan fitur Occupancy dengan koefisien sebesar 0,93. Fitur Humidity berkorelasi paling rendah dengan koefisien sebesar 0,52. Semua fitur numerik memiliki koefisien diatas 0,5.
     
-
 ## 4. Data Preparation
 
 1. Drop fitur HumidityRatio dan date
@@ -114,7 +125,7 @@ Berikut adalah hasil analisis dari data tersebut:
 
 2. Membuang outlier
 
-    Outlier pada data dari masing-masing class dibuang.
+    Outlier pada data dapat mempengaruhi kinerja model, sehingga perlu dibuang. Disini, outlier dari masing-masing kelas dibuang dengan menggunakan metode IQR. 
 
     ```py
     def is_outlier(group):
@@ -124,11 +135,13 @@ Berikut adalah hasil analisis dari data tersebut:
 
         lower_limit = Q1-1.5*IQR
         upper_limit = Q3+1.5*IQR
-        
+
         return ~group.between(lower_limit, upper_limit)
 
     for column in ['Temperature', 'Humidity', 'Light', 'CO2']:
-        dfset = dfset[~dfset.groupby('Occupancy', group_keys=False)[column].apply(is_outlier)]
+        dfset = dfset[~dfset.groupby('Occupancy')[column].apply(is_outlier)]
+
+    dfset.shape
     ```
 
     Kemudian kita periksa jumlah data yang tersisa dengan menggunakan kode berikut
@@ -140,7 +153,7 @@ Berikut adalah hasil analisis dari data tersebut:
     Didapat hasilnya adalah sebagai berikut:
 
     ```
-    (15838, 5)
+    (15436, 5)
     ```
 
 3. Membagi data menjadi data training dan data validasi
@@ -159,22 +172,13 @@ Berikut adalah hasil analisis dari data tersebut:
     Hasilnya adalah sebagai berikut:
 
     ```
-    Jumlah data training: 14254
-    Jumlah data validasi: 1584
+    Jumlah data training: 13892
+    Jumlah data validasi: 1544
     ```
 
-4. Normalisasi Data
+4. Oversampling dengan metode SMOTE
 
-    ```py
-    scaler = StandardScaler().fit(xTrain)
-
-    xTrainScaled = scaler.transform(xTrain)
-    xTestScaled = scaler.transform(xTest)
-    ```
-
-5. Oversampling dengan metode SMOTE
-
-    Data kelas occupied (kelas 1) jauh lebih sedikit dari data kelas not occupied (kelas 0). Hal ini dapat memberikan bias pada model. Untuk mencegahnya, dilakukan oversampling dengan menggunakan meotde SMOTE
+    Data kelas occupied (kelas 1) jauh lebih sedikit dari data kelas not occupied (kelas 0). Hal ini dapat memberikan bias pada model. Untuk mencegahnya, dilakukan oversampling dengan menggunakan metode SMOTE
 
     ```py
     smote = SMOTE(random_state=1)
@@ -197,9 +201,9 @@ Sedangkan kekurangan dari algoritma ini adalah:
 - Membutuhkan banyak proses komputasi
 - Waktu komputasi pada dataset berskala besar relatif lambat
 
-Proses improvement pada model akan dilakukan dengan hyperparameter tuning. Tuning ini akan dilakukan dengan menggunakan random search. Hyperparameter yang akan di-tune adalah sebagai berikut:
+Proses improvement pada model akan dilakukan dengan hyperparameter tuning menggunakan metode random search. Hyperparameter akan dipilih secara acak dari rentang berikut:
 
-- n_estimator (jumlah tree pada model): 100, 150, 200, 250, dst sampai 500
+- n_estimator (jumlah tree pada model): 100, 125, 150, 175, 200, 225, dst. sampai 500
 - max_depth (maksimal depth tiap tree): 3 sampai 20
 
 Tahapan melakukan modellingnya adalah sebagai berikut:
@@ -222,22 +226,27 @@ Tahapan melakukan modellingnya adalah sebagai berikut:
 
 3. Inisiasi Random Search
 
+    paramRanges menyatakan rentang hyperparameter yang akan dipilih oleh Randomized Search. Parameter `n_iter` menyatakan berapa model yang akan diuji dengan hyperparameter yang berbeda. Disini, Random Search akan menguji 20 kombinasi hyperparameter yang berbeda.
+
     ```py
-    paramGrid = {
-        'n_estimators': range(100, 500, 50),
+    paramRanges = {
+        'n_estimators': range(100, 501, 25),
         'max_depth': range(3, 20),
     }
 
-    search = RandomizedSearchCV(RandomForestClassifier(random_state=1), paramGrid, random_state=1)
+    search = RandomizedSearchCV(RandomForestClassifier(random_state=1), paramRanges, random_state=1, n_iter=20
+    )
     ```
 
 4. Melakukan Random Search pada model Random Forest
+
+    Random search juga menggunakan training data yang sudah dilakukan SMOTE
 
     ```py
     search.fit(xTrainResampled, yTrainResampled)
     ```
 
-    Hasil parameter terbaik pada random search tersebut adalah sebagai berikut:
+    Hasil parameter terbaik pada random search tersebut didapat dengan kode berikut:
 
     ```py
     search.best_params_
@@ -246,8 +255,10 @@ Tahapan melakukan modellingnya adalah sebagai berikut:
     Hasilnya adalah sebagai berikut:
 
     ```
-    {'n_estimators': 200, 'max_depth': 8}
+    {'n_estimators': 425, 'max_depth': 10}
     ```
+
+    Model yang memiliki performa terbaik setelah melakukan random search adalah yang memiliki parameter `n_estimators` sebesar 425 dan `max_depth` sebesar 10.
 
 ## 6. Evaluation
 
