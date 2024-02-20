@@ -158,12 +158,12 @@ Berikut adalah hasil analisis dari data tersebut:
 
 3. Membagi data menjadi data training dan data validasi
 
-    Data dibagi menjadi dua, yakni data training dan data validasi. Data training akan digunakan untuk pelatihan algoritma, sedangkan data validasi akan digunakan untuk evaluasi model. Data validasi sebesar 10% dari total data.
+    Data dibagi menjadi dua, yakni data training dan data validasi. Data training akan digunakan untuk pelatihan algoritma, sedangkan data validasi akan digunakan untuk evaluasi model. Data validasi sebesar 20% dari total data.
 
     ```py
     x = dfset.drop(columns=('Occupancy'))
     y = dfset.Occupancy
-    xTrain, xTest, yTrain, yTest = train_test_split(x, y, test_size = 0.1, random_state = 1)
+    xTrain, xTest, yTrain, yTest = train_test_split(x, y, test_size = 0.2, random_state = 1)
 
     print(f'Jumlah data training: {len(xTrain)}')
     print(f'Jumlah data validasi: {len(xTest)}')
@@ -172,8 +172,8 @@ Berikut adalah hasil analisis dari data tersebut:
     Hasilnya adalah sebagai berikut:
 
     ```
-    Jumlah data training: 13892
-    Jumlah data validasi: 1544
+    Jumlah data training: 12348
+    Jumlah data validasi: 3088
     ```
 
 4. Oversampling dengan metode SMOTE
@@ -234,8 +234,7 @@ Tahapan melakukan modellingnya adalah sebagai berikut:
         'max_depth': range(3, 20),
     }
 
-    search = RandomizedSearchCV(RandomForestClassifier(random_state=1), paramRanges, random_state=1, n_iter=20
-    )
+    search = RandomizedSearchCV(RandomForestClassifier(random_state=1), paramRanges, random_state=1, n_iter=20)
     ```
 
 4. Melakukan Random Search pada model Random Forest
