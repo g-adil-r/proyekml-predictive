@@ -10,6 +10,10 @@ Teknik pembelajaran mesin atau *machine learning* telah banyak diterapkan dalam 
 
 ### Referensi Terkait
 
+Security and Reliability of Room Occupancy Detection Using Probe Requests in Smart Buildings
+Building Occupancy Detection and Localization Using CCTV Camera and Deep Learning
+Occupancy Determination by Backscattered Visible Light Sensing
+
 Sebuah studi berjudul ["Occupancy Detection in Room Using Sensor Data"](https://arxiv.org/abs/2101.03616) oleh Mohammadhossein Toutiaee memberikan solusi untuk deteksi hunian menggunakan data sensor. Studi tersebut menunjukkan bahwa pendeteksian hunian dalam suatu ruangan dapat dilakukan dengan menganalisis data yang dikumpulkan dan menggunakan *machine learning*.
 
 Studi lain yang berjudul ["Promoting Occupancy Detection Accuracy Using On-Device Lifelong Learning"](https://ieeexplore.ieee.org/abstract/document/10081223) oleh Muhammad Emad-Ud-Din dan Ya Wang menyebutkan bahwa akurasi deteksi *machine learning* bergantung pada keragaman dataset yang dikumpulkan.
