@@ -10,13 +10,9 @@ Berbagai solusi telah diusulkan untuk mengatasi masalah ini. Salah satu pendekat
 
 ### Referensi Terkait
 
-Security and Reliability of Room Occupancy Detection Using Probe Requests in Smart Buildings
-Building Occupancy Detection and Localization Using CCTV Camera and Deep Learning
-Occupancy Determination by Backscattered Visible Light Sensing
+Sebuah studi berjudul ["Accurate occupancy detection of an office room from light, temperature, humidity and CO2 measurements using statistical learning models"](https://www.sciencedirect.com/science/article/abs/pii/S0378778815304357) oleh Luis M. Candanedo dan Veronique Feldheim melakukan deteksi hunain dengan menggunakan tiga model, yakni Linear Discriminant Analysis, Classification and Regression Trees, dan Random Forest. Hasilnya menunjukkan akurasi yang tinggi dari ketiga model tersebut.
 
-Sebuah studi berjudul ["Occupancy Detection in Room Using Sensor Data"](https://arxiv.org/abs/2101.03616) oleh Mohammadhossein Toutiaee memberikan solusi untuk deteksi hunian menggunakan data sensor. Studi tersebut menunjukkan bahwa pendeteksian hunian dalam suatu ruangan dapat dilakukan dengan menganalisis data yang dikumpulkan dan menggunakan *machine learning*.
-
-Studi lain yang berjudul ["Promoting Occupancy Detection Accuracy Using On-Device Lifelong Learning"](https://ieeexplore.ieee.org/abstract/document/10081223) oleh Muhammad Emad-Ud-Din dan Ya Wang menyebutkan bahwa akurasi deteksi *machine learning* bergantung pada keragaman dataset yang dikumpulkan.
+Studi lain berjudul ["Building Occupancy Detection and Localization Using CCTV Camera and Deep Learning"](https://ieeexplore.ieee.org/document/9868085) oleh Shushan Hu et al menggunakan data dari kamera CCTV dan model deep learning untuk mendeteksi hunian dari ruangan. Model juga berhasil untuk mendeteksi jumlah orang pada ruangan, serta lokasinya di ruangan tersebut. 
 
 ## 2. Business Understanding
 
@@ -121,7 +117,7 @@ Berikut adalah hasil analisis dari data tersebut:
 
 1. Drop fitur HumidityRatio dan date
 
-    Fitur date adalah fitur timestamp unik dari masing-masing data. Fitur HumidityRatio adalah fitur turunan dari humidity dan temperature. Kedua fitur didrop untuk mengurangi kompleksitas data dan model
+    Fitur date adalah fitur timestamp unik dari masing-masing data. Fitur date di didrop dengan tujuan agar model dapat melakukan deteksi hunian terlepas dari waktu kejadian dan hanya menggunakan fitur lain seperti cahaya. Sedangkan fitur HumidityRatio adalah fitur turunan dari humidity dan temperature, sehingga dapat didrop pula
 
     ```py
     dfset = df.drop(columns=['date', 'HumidityRatio'])
