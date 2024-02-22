@@ -6,7 +6,7 @@
 
 Deteksi hunian (*occupation detection*) menentukan apakah suatu ruangan sedang dihuni oleh seseorang menggunakan data yang didapat dari sensor, misalnya sensor cahaya, suhu, kelembapan, atau CO2. Deteksi hunian merupakan komponen penting di bidang Internet of Things (IoT), terutama dalam konteks *smart building*. Deteksi hunian sangat penting karena berdampak terhadap efisiensi energi, keamanan, dan kenyamanan. Misalnya, deteksi hunian dapat digunakan untuk mengontrol ventilasi, lampu, pemanas, dan pendingin pada bangunan, sehingga dapat mengurangi penggunaan energi listrik. Deteksi hunian dapat juga digunakan untuk mendeteksi kehadiran orang yang masuk ke dalam ruangan atau bangunan tanpa izin. Oleh karenanya, penting untuk menentukan cara mendeteksi hunian dari sebuah bangunan dengan efektif.
 
-Berbagai solusi telah diusulkan untuk mengatasi masalah ini. Salah satu pendekatannya melibatkan penggunaan berbagai sensor, seperti sensor CO2, kelembaban, suhu, dan sensor cahaya. Sensor ini digunakan bersama dengan berbagai algoritma, seperti algortima berbasis data dan algoritma analitik. Teknik pembelajaran mesin atau *machine learning* juga digunakan untuk mendeteksi hunian menggunakan data sensor, misalnya dengan algoritma *decision trees*, *random forest*, *gradient boosting machines*, *logistic regression*, *SVM*, serta *k-nearest neighbors*. Dengan memanfaatkan pendekatan ini, dimungkinkan untuk secara akurat menentukan hunian lingkungan dalam ruangan, sehingga meningkatkan efisiensi energi, keandalan bangunan, dan lingkungan cerdas.
+Berbagai solusi telah diusulkan untuk mengatasi masalah ini. Salah satu pendekatannya melibatkan penggunaan berbagai sensor, seperti sensor CO2, kelembaban, suhu, dan sensor cahaya. Sensor ini digunakan bersama dengan berbagai algoritma, seperti algortima berbasis data dan algoritma analitik. Teknik pembelajaran mesin atau *machine learning* juga digunakan untuk mendeteksi hunian menggunakan data sensor, misalnya dengan algoritma *decision trees*, *random forest*, *SVM*, serta *k-nearest neighbors*. Dengan memanfaatkan pendekatan ini, dimungkinkan untuk secara akurat menentukan hunian lingkungan dalam suatu ruangan, sehingga meningkatkan efisiensi energi dan keamanan bangunan.
 
 ### Referensi Terkait
 
@@ -159,7 +159,7 @@ Tahapan melakukan modellingnya adalah sebagai berikut:
     Model dilatih dengan training data yang sudah dilakukan SMOTE
 
     ```py
-    baselineModel.fit(xTrainResampled, yTrainResampled)
+    baselineModel.fit(xTrain, yTrain)
     ```
 
 3. Inisiasi Random Search
@@ -180,7 +180,7 @@ Tahapan melakukan modellingnya adalah sebagai berikut:
     Random search juga menggunakan training data yang sudah dilakukan SMOTE
 
     ```py
-    search.fit(xTrainResampled, yTrainResampled)
+    search.fit(xTrain, yTrain)
     ```
 
     Hasil parameter terbaik pada random search tersebut didapat dengan kode berikut:
