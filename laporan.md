@@ -207,11 +207,11 @@ Metrik evaluasi model yang digunakan adalah sebagai berikut:
 
     ![](pic/06-01.png)
 
-    Pada gambar diatas, ada 13 data yang berhasil diprediksi sebagai setosa, 10 data yang benar diprediksi sebagai versicolor, dan 9 data yang benar diprediksi sebagai virginica. Namun, ada 6 data yang diprediksi sebagai virginica, padahal seharusnya versicolor. 
+    Pada gambar diatas, ada 13 data yang berhasil diprediksi sebagai setosa, 10 data yang benar diprediksi sebagai versicolor, dan 9 data yang benar diprediksi sebagai virginica. Namun, ada 6 data yang diprediksi sebagai virginica, padahal seharusnya versicolor. Idealnya, hasil confusion matrix memiliki nilai yang besar di bagian diagonal utamanya.
 
 2. Accuracy
     
-    *Accuracy* atau akurasi adalah persentase hasil prediksi benar oleh model. *Accuracy* menunjukkan banyak prediksi benar dari keseluruhan prediksi. Rumus dari *Accuracy* adalah
+    *Accuracy* atau akurasi adalah persentase hasil prediksi benar oleh model. *Accuracy* menunjukkan banyak prediksi benar dari keseluruhan prediksi. Semakin besar nilainya, semakin tinggi akurasinya. Rumus dari *Accuracy* adalah
 
     ![](pic/06-02.png)
 
@@ -241,17 +241,24 @@ Metrik evaluasi model yang digunakan adalah sebagai berikut:
 
     ![](pic/06-05.png)
 
+    Semakin besar nilai f1 scorenya, semakin bagus performa modelnya. F1 score umumnya digunakan pada permasalahan klasifikasi yang terdapat ketidakseimbangan kelas.
 
+Berikut adalah nilai accuracy dan f1 dari model baseline dan model yang sudah dilakukan hyperparameter tuning:
 
-Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
+![](pic/06-06.png)
 
-Sebagai contoh, Anda memiih kasus klasifikasi dan menggunakan metrik **akurasi, precision, recall, dan F1 score**. Jelaskan mengenai beberapa hal berikut:
-- Penjelasan mengenai metrik yang digunakan
-- Menjelaskan hasil proyek berdasarkan metrik evaluasi
+Berikut adalah diagram dari tabel diatas:
 
-Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
+![](pic/06-07.png)
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
+Dari data diatas, terlihat bahwa model baseline memiliki akurasi dan f1 score yang lebih baik pada data training. Namun pada data test, model yang sudah di-tune memiliki akurasi dan f1 score yang lebih baik.
+
+Berikut adalah diagram confusion matrix dari data test masing-masing model:
+
+![](pic/06-08.png)
+
+Pada diagram diatas, terlihat bahwa prediksi salah dari model baseline lebih sedikit dari model yang sudah di-tune. Selain itu, prediksi 1 yang seharusnya 0 lebih banyak daripada prediksi 0 yang seharusnya 1.
+
+Dari hasil evaluasi diatas, didapat bahwa hyperparameter tuning dapat meningkatkan performa pada model Random Forest Classifier.
 
 **---Ini adalah bagian akhir laporan---**
