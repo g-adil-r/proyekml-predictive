@@ -271,9 +271,9 @@ Berikut adalah diagram dari tabel diatas:
 
 ![](pic/06-07.png)
 
-Dari data diatas, terlihat bahwa model baseline memiliki akurasi dan f1 score yang lebih baik pada data training. Namun pada data test, model yang sudah di-tune memiliki akurasi dan f1 score yang lebih baik.
+Dari data diatas, terlihat bahwa model baseline memiliki akurasi dan f1 score yang lebih baik dari model yang di-tune pada data training. Namun pada data test, model baseline memiliki akurasi dan f1 score yang lebih buruk dari model yang di-tune
 
-Berikut adalah diagram confusion matrix dari data test masing-masing model:
+Berikut adalah diagram confusion matrix menggunakan dataset test dari masing-masing model:
 
 ![](pic/06-08.png)
 
