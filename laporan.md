@@ -293,7 +293,7 @@ Dari diagram diatas, didapat observasi berikut:
     - False Negative (FN): 16 sampel salah diprediksi sebagai not occupied.
     - True Positive (TP): 3005 sampel benar diprediksi sebagai occupied.
 
-Dari diagram ini, kita dapat melihat bahwa model yang sudah di-tune memiliki performa yang lebih baik dibandingkan dengan Model Baseline, dengan jumlah kesalahan prediksi yang lebih sedikit. Selain itu, jumlah False Positive cenderung lebih besar darpiada jumlah Flase Negative.
+Dari diagram ini, kita dapat melihat bahwa model yang sudah di-tune memiliki performa yang lebih baik dibandingkan dengan Model Baseline, dengan jumlah kesalahan prediksi yang lebih sedikit. Selain itu, jumlah False Positive cenderung lebih besar daripada jumlah False Negative.
 
 Dari hasil evaluasi diatas, didapat bahwa hyperparameter tuning dapat meningkatkan performa pada model Random Forest Classifier, terutama dalam kasus deteksi hunian.
 
