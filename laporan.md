@@ -27,7 +27,7 @@ Untuk menjawab pertanyaan tersebut, *predictive modelling* dibuat dengan tujuan 
 - Membuat model *machine learning* yang dapat memprediksi hunian seakurat mungkin berdasarkan fitur-fitur yang ada
 
 ### Solution statements
-Untuk mencapai tujuan tersebut, hal yang perlu dilakukan adalah sebagai berikut:
+Untuk mencapai tujuan tersebut, solusi yang perlu dilakukan adalah sebagai berikut:
 - Membuat baseline model *machine learning* dengan algoritma Random Forest
 - Melakukan hyperparameter tuning pada model baseline Random Forest
 
