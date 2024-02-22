@@ -90,11 +90,11 @@ Berikut adalah hasil analisis dari data tersebut:
 
     ![](pic/03-05.png)
 
-    Dari grafik diatas, terlihat ada beberapa outlier pada data, terutama outlier dari masing-masing kelas.
+    Dari grafik diatas, terlihat ada beberapa outlier pada data, terutama outlier dari masing-masing kelas pada fitur Light dan CO2.
 
 5. Correlation Matrix
 
-    Metode Pearson, yang merupakan default pada `df.corr()`, umumnya digunakan untuk memeriksa korelasi dari dua fitur kontinyu. Pada data yang digunakan, fitur occupancy merupakan fitur diskret, sedangkan fitur lainnya adalah fitur kontinyu, sehingga kurang cocok menggunakan metode Pearson.
+    Metode Pearson, yang merupakan default pada `df.corr()`, umumnya digunakan untuk memeriksa korelasi dari dua fitur kontinyu. Pada data yang digunakan, fitur occupancy merupakan fitur diskret (0 dan 1), sedangkan fitur lainnya adalah fitur kontinyu, sehingga kurang cocok menggunakan metode Pearson.
 
     Disini, metode tes korelasi yang digunakan adalah metode *Cramer's V* atau koefisien Cramer yang lebih sesuai untuk kondisi tersebut. Koefisien Cramer dapat dicari dengan rumus
 
@@ -119,71 +119,9 @@ Berikut adalah hasil analisis dari data tersebut:
 
     Fitur date adalah fitur timestamp unik dari masing-masing data. Fitur date di didrop dengan tujuan agar model dapat melakukan deteksi hunian terlepas dari waktu kejadian dan hanya menggunakan fitur lain seperti cahaya. Sedangkan fitur HumidityRatio adalah fitur turunan dari humidity dan temperature, sehingga dapat didrop pula
 
-    ```py
-    dfset = df.drop(columns=['date', 'HumidityRatio'])
-    ```
-
-2. Membuang outlier
-
-    Outlier pada data dapat mempengaruhi kinerja model, sehingga perlu dibuang. Disini, outlier dari masing-masing kelas dibuang dengan menggunakan metode IQR. 
-
-    ```py
-    def is_outlier(group):
-        Q1 = group.quantile(0.25)
-        Q3 = group.quantile(0.75)
-        IQR = Q3 - Q1
-
-        lower_limit = Q1-1.5*IQR
-        upper_limit = Q3+1.5*IQR
-
-        return ~group.between(lower_limit, upper_limit)
-
-    for column in ['Temperature', 'Humidity', 'Light', 'CO2']:
-        dfset = dfset[~dfset.groupby('Occupancy')[column].apply(is_outlier)]
-
-    dfset.shape
-    ```
-
-    Kemudian kita periksa jumlah data yang tersisa dengan menggunakan kode berikut
-
-    ```py
-    dfset.shape
-    ```
-
-    Didapat hasilnya adalah sebagai berikut:
-
-    ```
-    (15436, 5)
-    ```
-
-3. Membagi data menjadi data training dan data validasi
-
-    Data dibagi menjadi dua, yakni data training dan data validasi. Data training akan digunakan untuk pelatihan algoritma, sedangkan data validasi akan digunakan untuk evaluasi model. Data validasi sebesar 20% dari total data.
-
-    ```py
-    x = dfset.drop(columns=('Occupancy'))
-    y = dfset.Occupancy
-    xTrain, xTest, yTrain, yTest = train_test_split(x, y, test_size = 0.2, random_state = 1)
-
-    print(f'Jumlah data training: {len(xTrain)}')
-    print(f'Jumlah data validasi: {len(xTest)}')
-    ```
-
-    Hasilnya adalah sebagai berikut:
-
-    ```
-    Jumlah data training: 12348
-    Jumlah data validasi: 3088
-    ```
-
-4. Oversampling dengan metode SMOTE
+2. Oversampling dengan metode SMOTE
 
     Data kelas occupied (kelas 1) jauh lebih sedikit dari data kelas not occupied (kelas 0). Hal ini dapat memberikan bias pada model. Untuk mencegahnya, dilakukan oversampling dengan menggunakan metode SMOTE
-
-    ```py
-    smote = SMOTE(random_state=1)
-    xTrainResampled, yTrainResampled = smote.fit_resample(xTrain, yTrain) 
-    ```
 
 ## 5. Modeling
 
@@ -254,36 +192,30 @@ Tahapan melakukan modellingnya adalah sebagai berikut:
     Hasilnya adalah sebagai berikut:
 
     ```
-    {'n_estimators': 425, 'max_depth': 10}
+    {'n_estimators': 375, 'max_depth': 3}
     ```
 
-    Model yang memiliki performa terbaik setelah melakukan random search adalah yang memiliki parameter `n_estimators` sebesar 425 dan `max_depth` sebesar 10.
+    Model yang memiliki performa terbaik setelah melakukan random search adalah yang memiliki parameter `n_estimators` sebesar 375 dan `max_depth` sebesar 3.
 
 ## 6. Evaluation
 
-Metrik evaluasi model yang akan digunakan adalah sebagai berikut:
+Metrik evaluasi model yang digunakan adalah sebagai berikut:
 
 1. Confusion Matrix
 
-    Confusion Matrix berisi jumlah prediksi model dibandingkan dengan hasil yang sebenarnya
+    Confusion Matrix berisi prediksi model dibandingkan dengan yang seharusnya. Tiap baris menunjukkan kelas yang benar, dan tiap kolom menunjukkan prediksi yang dilakukan model.
 
 2. Accuracy
     
     Accuracy adalah persentase hasil prediksi benar oleh model.
 
-3. Precision
-
-    Precision adalah jumlah true positive dari semua positive yang memang sudah diprediksi
-
-4. Recall
-
-    Recall adalah jumlah label positive yang memang benar-benar positif
-
-5. F1-score
-
-    Rumus F1-score adalah sebagai berikut
-
     ![](pic/06-01.png)
+
+3. F1 score
+
+    F1 Score adalah metrik evaluasi yang menggabungkan nilai *precision* dan *recall*. Rumus F1-score adalah sebagai berikut
+
+    ![](pic/06-04.png)
 
 
 
