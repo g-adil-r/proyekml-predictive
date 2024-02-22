@@ -90,7 +90,13 @@ Berikut adalah hasil analisis dari data tersebut:
 
     ![](pic/03-05.png)
 
-    Dari grafik diatas, terlihat ada beberapa outlier pada data. Outlier dari masing-masing kelas pada fitur Light dan CO2 cukup banyak, sehingga. 
+    Dari grafik diatas, didapat observasi sebagai berikut:
+
+    - Pada fitur temperature dan CO2, terdapat beberapa outlier pada kedua kelas, baik pada kelas Not Occupied maupun kelas Occupied.
+    - Pada fitur humidity, tidak ada outlier yang signifikan.
+    - Pada fitur light, banyak outlier terlihat pada kedua kelas
+    - Pada fitur CO2, outlier lebih sedikit pada kelas Occupied dibandingkan dengan kelas Not Occupied
+    - Pada fitur Humidity Ratio, terdapat beberapa outlier pada kelas Occupied, namun tidak terlalu signifikan
 
 5. Correlation Matrix
 
