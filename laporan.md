@@ -277,8 +277,24 @@ Berikut adalah diagram confusion matrix menggunakan dataset test dari masing-mas
 
 ![](pic/06-08.png)
 
-Pada diagram diatas, terlihat bahwa prediksi salah dari model baseline lebih sedikit dari model yang sudah di-tune. Selain itu, prediksi 1 yang seharusnya 0 lebih banyak daripada prediksi 0 yang seharusnya 1.
+Dari diagram diatas, didapat observasi berikut:
 
-Dari hasil evaluasi diatas, didapat bahwa hyperparameter tuning dapat meningkatkan performa pada model Random Forest Classifier.
+- Model Baseline:
+
+    - True Negative (TN): 9005 sampel benar diprediksi sebagai not occupied.
+    - False Positive (FP): 391 sampel salah diprediksi sebagai occupied.
+    - False Negative (FN): 64 sampel salah diprediksi sebagai not occupied.
+    - True Positive (TP): 2957 sampel benar diprediksi sebagai occupied.
+
+- Model Tuned:
+
+    - True Negative (TN): 9287 sampel benar diprediksi sebagai not occupied.
+    - False Positive (FP): 109 sampel salah diprediksi sebagai occupied.
+    - False Negative (FN): 16 sampel salah diprediksi sebagai not occupied.
+    - True Positive (TP): 3005 sampel benar diprediksi sebagai occupied.
+
+Dari diagram ini, kita dapat melihat bahwa model yang sudah di-tune memiliki performa yang lebih baik dibandingkan dengan Model Baseline, dengan jumlah kesalahan prediksi yang lebih sedikit. Selain itu, jumlah False Positive cenderung lebih besar darpiada jumlah Flase Negative.
+
+Dari hasil evaluasi diatas, didapat bahwa hyperparameter tuning dapat meningkatkan performa pada model Random Forest Classifier, terutama dalam kasus deteksi hunian.
 
 **---Ini adalah bagian akhir laporan---**
