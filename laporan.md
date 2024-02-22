@@ -203,19 +203,43 @@ Metrik evaluasi model yang digunakan adalah sebagai berikut:
 
 1. Confusion Matrix
 
-    Confusion Matrix berisi prediksi model dibandingkan dengan yang seharusnya. Tiap baris menunjukkan kelas yang benar, dan tiap kolom menunjukkan prediksi yang dilakukan model.
-
-2. Accuracy
-    
-    Accuracy adalah persentase hasil prediksi benar oleh model.
+    Confusion Matrix berisi prediksi model dibandingkan dengan yang seharusnya. Tiap baris menunjukkan kelas yang benar, dan tiap kolom menunjukkan prediksi yang dilakukan model. Contoh confusion matrix adalah sebagai berikut:
 
     ![](pic/06-01.png)
 
+    Pada gambar diatas, ada 13 data yang berhasil diprediksi sebagai setosa, 10 data yang benar diprediksi sebagai versicolor, dan 9 data yang benar diprediksi sebagai virginica. Namun, ada 6 data yang diprediksi sebagai virginica, padahal seharusnya versicolor. 
+
+2. Accuracy
+    
+    *Accuracy* atau akurasi adalah persentase hasil prediksi benar oleh model. *Accuracy* menunjukkan banyak prediksi benar dari keseluruhan prediksi. Rumus dari *Accuracy* adalah
+
+    ![](pic/06-02.png)
+
 3. F1 score
 
-    F1 Score adalah metrik evaluasi yang menggabungkan nilai *precision* dan *recall*. Rumus F1-score adalah sebagai berikut
+    F1 Score adalah metrik evaluasi yang menggabungkan nilai *precision* dan *recall*. Lebih tepatnya, F1 Score adalah rata-rata harmonik dari *precision* dan *recall*.
+
+    *Precision* sendiri adalah metrik yang digunakan untuk mengukur kecocokan antara bagian data yang diambil dengan informasi yang dibutuhkan. *Precision* menunjukkan banyaknya prediksi positif dari model yang memang benar-benar positif dari keseluruhan prediksi positif. Rumus dari precision adalah
+
+    ![](pic/06-03.png)
+
+    dimana:
+
+    - TP: *True Positive*: Banyaknya sampel yang benar diprediksi sebagai positif
+    - FP: *False Positive*: Banyaknya sampel yang salah diprediksi sebagai positif
+
+    Sedangkan *recall* adalah metrik yang digunakan untuk mengukur tingkat keberhasilan sistem dalam menemukan kembali sebuah informasi. *Recall* menunjukkan banyaknya prediksi positif yang berhasil diprediksi oleh model dari keseluruhan sampel positif. Rumus dari recall adalah 
 
     ![](pic/06-04.png)
+
+    dimana:
+
+    - TP: *True Positive*: Banyaknya sampel yang benar diprediksi sebagai positif
+    - FN: *False negative*: Banyaknya sampel yang salah diprediksi sebagai negatif
+
+    Dari nilai precision dan recall diatas, didapat nilai F1 score sebagai berikut:
+
+    ![](pic/06-05.png)
 
 
 
