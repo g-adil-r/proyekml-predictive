@@ -127,9 +127,21 @@ Preprocessing data di bawah ini dilakukan pada data training.
 
     Fitur date adalah fitur timestamp unik dari masing-masing data. Fitur date di didrop dengan tujuan agar model dapat melakukan deteksi hunian terlepas dari waktu kejadian dan hanya menggunakan fitur lain seperti cahaya. Sedangkan fitur HumidityRatio adalah fitur turunan dari humidity dan temperature, sehingga dapat didrop pula
 
+    ```py
+    dfTrain = df1.drop(columns=['date', 'HumidityRatio'])
+    ```
+
 2. Oversampling dengan metode SMOTE
 
     Data kelas occupied (kelas 1) jauh lebih sedikit dari data kelas not occupied (kelas 0). Hal ini dapat memberikan bias pada model. Untuk mencegahnya, dilakukan oversampling dengan menggunakan metode SMOTE
+
+    ```py
+    xTrain = dfTrain.drop(columns=('Occupancy'))
+    yTrain = dfTrain.Occupancy
+
+    smote = SMOTE(random_state=1)
+    xTrain, yTrain = smote.fit_resample(xTrain, yTrain)
+    ```
 
 ## 5. Modeling
 
