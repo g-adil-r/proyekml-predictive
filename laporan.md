@@ -33,7 +33,7 @@ Untuk mencapai tujuan tersebut, solusi yang perlu dilakukan adalah sebagai berik
 
 ## 3. Data Understanding
 
-Dataset yang digunakan adalah dataset [Occupancy Detection](https://archive.ics.uci.edu/dataset/357/occupancy+detection) oleh Luis Candanedo. Dataset ini memiliki 20560 sampel data dengan 7 fitur, yakni date, Temperature, Humidity, Light, CO2, HumidityRatio, dan Occupancy
+Dataset yang digunakan adalah dataset [Occupancy Detection](https://archive.ics.uci.edu/dataset/357/occupancy+detection) oleh Luis Candanedo. Dataset ini memiliki 20560 sampel data dengan 7 fitur, yakni date, Temperature, Humidity, Light, CO2, HumidityRatio, dan Occupancy. Sumber dataset sudah membagi dataset menjadi data training dan data testing. Data trainingnya sebanyak 8143 sampel, sedangkan data testingnya sebanyak 12417 sampel. 
 
 ### Deskripsi Variable
 
@@ -42,7 +42,7 @@ Variable-variable yang ada pada dataset adalah sebagai berikut:
 - date: merupakan waktu data diperoleh
 - Temperature: merupakan suhu ruangan dalam satuan Celsius
 - Humidity: merupakan kelembapan relatif dalam satuan persentase
-- Light: merupakan intensitas penerangan cahaya dalam satuan Lux
+- Light: merupakan intensitas cahaya dalam satuan Lux
 - CO2: merupakan konsentrasi molekul karbon dioksida di udara dalam satuan ppm
 - HumidityRatio: merupakan fitur turunan dari Temperature dan Humidity dalam satuan kg-uap-air/kg-udara
 - Occupancy: merupakan deteksi hunian ruangan, didapat dari gambar yang diambil setiap menitnya. 0 artinya tidak berpenghuni (Not Occupied), 1 artinya berpenghuni (Occupied)
@@ -90,7 +90,7 @@ Berikut adalah hasil analisis dari data tersebut:
 
     ![](pic/03-05.png)
 
-    Dari grafik diatas, terlihat ada beberapa outlier pada data, terutama outlier dari masing-masing kelas pada fitur Light dan CO2.
+    Dari grafik diatas, terlihat ada beberapa outlier pada data. Outlier dari masing-masing kelas pada fitur Light dan CO2 cukup banyak, sehingga. 
 
 5. Correlation Matrix
 
@@ -114,6 +114,8 @@ Berikut adalah hasil analisis dari data tersebut:
     Dari gambar diatas, terlihat bahwa fitur Light berkorelasi paling tinggi dengan fitur Occupancy dengan koefisien sebesar 0,93. Fitur Humidity berkorelasi paling rendah dengan koefisien sebesar 0,52. Semua fitur numerik memiliki koefisien diatas 0,5.
     
 ## 4. Data Preparation
+
+Preprocessing data di bawah ini dilakukan pada data training.
 
 1. Drop fitur HumidityRatio dan date
 
