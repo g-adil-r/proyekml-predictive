@@ -28,8 +28,8 @@ Untuk menjawab pertanyaan tersebut, *predictive modelling* dibuat dengan tujuan 
 
 ### Solution statements
 Untuk mencapai tujuan tersebut, hal yang perlu dilakukan adalah sebagai berikut:
-- Membuat baseline model *machine learning*
-- Membuat model dengan algoritma Random Forest dan melakukan hyperparameter tuning
+- Membuat baseline model *machine learning* dengan algoritma Random Forest
+- Melakukan hyperparameter tuning pada model baseline Random Forest
 
 ## 3. Data Understanding
 
