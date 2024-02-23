@@ -127,21 +127,9 @@ Preprocessing data di bawah ini dilakukan pada data training.
 
     Fitur date adalah fitur timestamp unik dari masing-masing data. Fitur date di didrop dengan tujuan agar model dapat melakukan deteksi hunian terlepas dari waktu kejadian dan hanya menggunakan fitur lain seperti cahaya. Sedangkan fitur HumidityRatio adalah fitur turunan dari humidity dan temperature, sehingga dapat didrop pula
 
-    ```py
-    dfTrain = df1.drop(columns=['date', 'HumidityRatio'])
-    ```
-
 2. Oversampling dengan metode SMOTE
 
     Data kelas occupied (kelas 1) jauh lebih sedikit dari data kelas not occupied (kelas 0). Hal ini dapat memberikan bias pada model. Untuk mencegahnya, dilakukan oversampling dengan menggunakan metode SMOTE
-
-    ```py
-    xTrain = dfTrain.drop(columns=('Occupancy'))
-    yTrain = dfTrain.Occupancy
-
-    smote = SMOTE(random_state=1)
-    xTrain, yTrain = smote.fit_resample(xTrain, yTrain)
-    ```
 
 ## 5. Modeling
 
@@ -170,51 +158,17 @@ Tahapan melakukan modellingnya adalah sebagai berikut:
 
     Parameter *random_state* digunakan agar dapat memberikan hasil konsisten setiap kali menjalankan notebook
 
-    ```py
-    baselineModel = RandomForestClassifier(random_state=1)
-    ```
-
 2. Melatih baseline model
 
     Model dilatih dengan training data yang sudah dilakukan SMOTE
-
-    ```py
-    baselineModel.fit(xTrain, yTrain)
-    ```
 
 3. Inisiasi Random Search
 
     paramRanges menyatakan rentang hyperparameter yang akan dipilih oleh Randomized Search. Parameter `n_iter` menyatakan berapa model yang akan diuji dengan hyperparameter yang berbeda. Disini, Random Search akan menguji 20 kombinasi hyperparameter yang berbeda.
 
-    ```py
-    paramRanges = {
-        'n_estimators': range(100, 501, 25),
-        'max_depth': range(3, 20),
-    }
-
-    search = RandomizedSearchCV(RandomForestClassifier(random_state=1), paramRanges, random_state=1, n_iter=20)
-    ```
-
 4. Melakukan Random Search pada model Random Forest
 
     Random search juga menggunakan training data yang sudah dilakukan SMOTE
-
-    ```py
-    search.fit(xTrain, yTrain)
-    ```
-
-    Hasil parameter terbaik pada random search tersebut didapat dengan kode berikut:
-
-    ```py
-    search.best_params_
-    ```
-
-    Hasilnya adalah sebagai berikut:
-
-    ```
-    {'n_estimators': 375, 'max_depth': 3}
-    ```
-
     Model yang memiliki performa terbaik setelah melakukan random search adalah yang memiliki parameter `n_estimators` sebesar 375 dan `max_depth` sebesar 3.
 
 ## 6. Evaluation
