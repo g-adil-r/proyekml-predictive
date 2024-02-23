@@ -187,9 +187,7 @@ Metrik evaluasi model yang digunakan adalah sebagai berikut:
     
     *Accuracy* atau akurasi adalah persentase hasil prediksi benar oleh model. *Accuracy* menunjukkan banyak prediksi benar dari keseluruhan prediksi. Semakin besar nilainya, semakin tinggi akurasinya. Rumus dari *Accuracy* adalah
 
-    $$
-    \text{Accuracy} = \frac{\text{total perdiksi benar}}{\text{total prediksi}}
-    $$
+    $$\text{Accuracy} = \frac{\text{total perdiksi benar}}{\text{total prediksi}}$$
 
 3. F1 score
 
@@ -197,9 +195,7 @@ Metrik evaluasi model yang digunakan adalah sebagai berikut:
 
     *Precision* sendiri adalah metrik yang digunakan untuk mengukur kecocokan antara bagian data yang diambil dengan informasi yang dibutuhkan. *Precision* menunjukkan banyaknya prediksi positif dari model yang memang benar-benar positif dari keseluruhan prediksi positif. Rumus dari precision adalah
 
-    $$
-    \text{Precision} = \frac{TP}{TP + FP}
-    $$
+    $$\text{Precision} = \frac{TP}{TP + FP}$$
 
     dimana:
 
@@ -208,9 +204,7 @@ Metrik evaluasi model yang digunakan adalah sebagai berikut:
 
     Sedangkan *recall* adalah metrik yang digunakan untuk mengukur tingkat keberhasilan sistem dalam menemukan kembali sebuah informasi. *Recall* menunjukkan banyaknya prediksi positif yang berhasil diprediksi oleh model dari keseluruhan sampel positif. Rumus dari recall adalah 
 
-    $$
-    \text{Recall} = \frac{TP}{TP + FN}
-    $$
+    $$\text{Recall} = \frac{TP}{TP + FN}$$
 
     dimana:
 
@@ -219,9 +213,7 @@ Metrik evaluasi model yang digunakan adalah sebagai berikut:
 
     Dari nilai precision dan recall diatas, didapat nilai F1 score sebagai berikut:
 
-    $$
-    \text{F1 Score} = 2\times\frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
-    $$
+    $$\text{F1 Score} = 2\times\frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}$$
 
     Semakin besar nilai f1 scorenya, semakin bagus performa modelnya. F1 score umumnya digunakan pada permasalahan klasifikasi yang terdapat ketidakseimbangan kelas.
 
