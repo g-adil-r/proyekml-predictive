@@ -188,7 +188,7 @@ Metrik evaluasi model yang digunakan adalah sebagai berikut:
     *Accuracy* atau akurasi adalah persentase hasil prediksi benar oleh model. *Accuracy* menunjukkan banyak prediksi benar dari keseluruhan prediksi. Semakin besar nilainya, semakin tinggi akurasinya. Rumus dari *Accuracy* adalah
 
     $$
-    \text{accuracy} = \frac{\text{\# perdiksi benar}}{\text{\# prediksi}}
+    \text{accuracy} = \frac{\text{\\# perdiksi benar}}{\text{\\# prediksi}}
     $$
 
 3. F1 score
