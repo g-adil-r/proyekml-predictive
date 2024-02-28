@@ -4,9 +4,9 @@
 
 ### Latar Belakang
 
-Deteksi hunian (*occupation detection*) menentukan apakah suatu ruangan sedang dihuni oleh seseorang menggunakan data yang didapat dari sensor, misalnya sensor cahaya, suhu, kelembapan, atau CO2. Deteksi hunian merupakan komponen penting di bidang Internet of Things (IoT), terutama dalam konteks *smart building*. Deteksi hunian sangat penting karena berdampak terhadap efisiensi energi, keamanan, dan kenyamanan. Misalnya, deteksi hunian dapat digunakan untuk mengontrol ventilasi, lampu, pemanas, dan pendingin pada bangunan, sehingga dapat mengurangi penggunaan energi listrik. Deteksi hunian dapat juga digunakan untuk mendeteksi kehadiran orang yang masuk ke dalam ruangan atau bangunan tanpa izin. Oleh karenanya, penting untuk menentukan cara mendeteksi hunian dari sebuah bangunan dengan efektif.
+Deteksi hunian (*occupation detection*) menentukan apakah suatu ruangan sedang dihuni oleh seseorang menggunakan data yang didapat dari sensor, misalnya sensor cahaya, suhu, kelembapan, atau CO2. Deteksi hunian merupakan komponen penting di bidang Internet of Things (IoT), terutama dalam konteks *smart building*. Deteksi hunian sangat penting karena berdampak terhadap efisiensi energi, keamanan, dan kenyamanan. Misalnya, deteksi hunian dapat digunakan untuk mengontrol ventilasi, lampu, pemanas, dan pendingin pada bangunan sehingga dapat mengurangi penggunaan energi listrik. Deteksi hunian dapat juga digunakan untuk mendeteksi kehadiran orang yang masuk ke dalam ruangan atau bangunan tanpa izin. Oleh karenanya, penting untuk menentukan cara mendeteksi hunian dari sebuah bangunan dengan efektif.
 
-Berbagai solusi telah diusulkan untuk mengatasi masalah ini. Salah satu pendekatannya melibatkan penggunaan berbagai sensor, seperti sensor CO2, kelembaban, suhu, dan sensor cahaya. Sensor ini digunakan bersama dengan berbagai algoritma, seperti algortima berbasis data dan algoritma analitik. Teknik pembelajaran mesin atau *machine learning* juga digunakan untuk mendeteksi hunian menggunakan data sensor, misalnya dengan algoritma *decision trees*, *random forest*, *SVM*, serta *k-nearest neighbors*. Dengan memanfaatkan pendekatan ini, dimungkinkan untuk secara akurat menentukan hunian lingkungan dalam suatu ruangan, sehingga meningkatkan efisiensi energi dan keamanan bangunan.
+Berbagai solusi telah diusulkan untuk mengatasi masalah ini. Salah satu pendekatannya melibatkan penggunaan berbagai sensor, seperti sensor CO2, kelembapan, suhu, dan sensor cahaya. Sensor ini digunakan bersama dengan berbagai algoritma, seperti algortima berbasis data dan algoritma analitik. Teknik pembelajaran mesin atau *machine learning* juga digunakan untuk mendeteksi hunian menggunakan data sensor, misalnya dengan algoritma *decision trees*, *random forest*, *SVM*, serta *k-nearest neighbors*. Dengan memanfaatkan pendekatan ini, dimungkinkan untuk secara akurat menentukan hunian lingkungan dalam suatu ruangan sehingga meningkatkan efisiensi energi dan keamanan bangunan.
 
 ### Referensi Terkait
 
@@ -33,7 +33,7 @@ Untuk mencapai tujuan tersebut, solusi yang perlu dilakukan adalah sebagai berik
 
 ## 3. Data Understanding
 
-Dataset yang digunakan adalah dataset [Occupancy Detection](https://archive.ics.uci.edu/dataset/357/occupancy+detection) oleh Luis Candanedo. Dataset ini memiliki 20560 sampel data dengan 7 fitur, yakni date, Temperature, Humidity, Light, CO2, HumidityRatio, dan Occupancy. Sumber dataset sudah membagi dataset menjadi data training dan data testing. Data trainingnya sebanyak 8143 sampel, sedangkan data testingnya sebanyak 12417 sampel. 
+Dataset yang digunakan adalah dataset [Occupancy Detection](https://archive.ics.uci.edu/dataset/357/occupancy+detection) oleh Luis Candanedo. Dataset ini memiliki 20560 sampel data dengan 7 fitur, yakni date, Temperature, Humidity, Light, CO2, HumidityRatio, dan Occupancy. Dataset sudah dibagi menjadi data training dan data testing. Data trainingnya sebanyak 8143 sampel, sedangkan data testingnya sebanyak 12417 sampel. 
 
 ### Deskripsi Variable
 
@@ -49,7 +49,16 @@ Variable-variable yang ada pada dataset adalah sebagai berikut:
 
 Berikut adalah hasil `df.describe()` dari data:
 
-![](pic/03-01.png)
+|       |  Temperature |   Humidity   |     Light    |      CO2     | HumidityRatio |   Occupancy  |
+|------:|:------------:|:------------:|:------------:|:------------:|:-------------:|:------------:|
+| count | 20560.000000 | 20560.000000 | 20560.000000 | 20560.000000 |  20560.000000 | 20560.000000 |
+|  mean |   20.906212  |   27.655925  |  130.756622  |  690.553276  |    0.004228   |   0.231031   |
+|   std |   1.055315   |   4.982154   |  210.430875  |  311.201281  |    0.000768   |   0.421503   |
+|   min |   19.000000  |   16.745000  |   0.000000   |  412.750000  |    0.002674   |   0.000000   |
+|   25% |   20.200000  |   24.500000  |   0.000000   |  460.000000  |    0.003719   |   0.000000   |
+|   50% |   20.700000  |   27.290000  |   0.000000   |  565.416667  |    0.004292   |   0.000000   |
+|   75% |   21.525000  |   31.290000  |  301.000000  |  804.666667  |    0.004832   |   0.000000   |
+|   max |   24.408333  |   39.500000  |  1697.250000 |  2076.500000 |    0.006476   |   1.000000   |
 
 ### Exploratory Data Analysis
 
@@ -125,7 +134,7 @@ Preprocessing data di bawah ini dilakukan pada data training.
 
 1. Drop fitur HumidityRatio dan date
 
-    Fitur date adalah fitur timestamp unik dari masing-masing data. Fitur date di didrop dengan tujuan agar model dapat melakukan deteksi hunian terlepas dari waktu kejadian dan hanya menggunakan fitur lain seperti cahaya. Sedangkan fitur HumidityRatio adalah fitur turunan dari humidity dan temperature, sehingga dapat didrop pula
+    Fitur date adalah fitur timestamp unik dari masing-masing data. Fitur date didrop dengan tujuan agar model dapat melakukan deteksi hunian terlepas dari waktu kejadian dan hanya menggunakan fitur lain seperti cahaya. Sedangkan fitur HumidityRatio adalah fitur turunan dari humidity dan temperature, sehingga dapat didrop pula
 
 2. Oversampling dengan metode SMOTE
 
@@ -219,7 +228,12 @@ Metrik evaluasi model yang digunakan adalah sebagai berikut:
 
 Berikut adalah nilai accuracy dan f1 dari model baseline dan model yang sudah dilakukan hyperparameter tuning:
 
-![](pic/06-06.png)
+|           | Baseline |   Tuned  |
+|----------:|:--------:|:--------:|
+| Train acc |    1.0   | 0.992672 |
+|  Train F1 |    1.0   |  0.99271 |
+|  Test acc | 0.963357 | 0.989933 |
+|  Test F1  |  0.92856 | 0.979625 |
 
 Berikut adalah diagram dari tabel diatas:
 
