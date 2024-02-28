@@ -4,9 +4,21 @@
 
 ### Latar Belakang
 
-Deteksi hunian (*occupation detection*) menentukan apakah suatu ruangan sedang dihuni oleh seseorang menggunakan data yang didapat dari sensor, misalnya sensor cahaya, suhu, kelembapan, atau CO2. Deteksi hunian merupakan komponen penting di bidang Internet of Things (IoT), terutama dalam konteks *smart building*. Deteksi hunian sangat penting karena berdampak terhadap efisiensi energi, keamanan, dan kenyamanan.[^1] Misalnya, deteksi hunian dapat digunakan untuk mengontrol ventilasi, lampu, pemanas, dan pendingin pada bangunan sehingga dapat mengurangi penggunaan energi listrik. Deteksi hunian dapat juga digunakan untuk mendeteksi kehadiran orang yang masuk ke dalam ruangan atau bangunan tanpa izin. Oleh karenanya, penting untuk menentukan cara mendeteksi hunian dari sebuah bangunan dengan efektif.
+Deteksi hunian (occupation detection) menentukan apakah suatu ruangan sedang dihuni oleh seseorang menggunakan data yang didapat dari sensor, misalnya sensor cahaya, suhu, kelembapan, atau CO2. Deteksi hunian sangat penting karena berdampak terhadap efisiensi energi, keamanan, dan kenyaman.
 
-Berbagai solusi telah diusulkan untuk mengatasi masalah ini. Salah satu pendekatannya melibatkan penggunaan berbagai sensor, seperti sensor CO2, kelembapan, suhu, dan sensor cahaya. Sensor ini digunakan bersama dengan berbagai algoritma, seperti algortima berbasis data dan algoritma analitik. Teknik pembelajaran mesin atau *machine learning* juga digunakan untuk mendeteksi hunian menggunakan data sensor, misalnya dengan algoritma *decision trees*, *random forest*, *SVM*, serta *k-nearest neighbors*. Dengan memanfaatkan pendekatan ini, dimungkinkan untuk secara akurat menentukan hunian lingkungan dalam suatu ruangan sehingga meningkatkan efisiensi energi dan keamanan bangunan.
+Dalam aspek efisiensi energi, deteksi hunian dapat membantu menghemat energi sebesar 10-40%[^1]. Misalnya, deteksi hunian dapat digunakan untuk mengontrol ventilasi, lampu, pemanas, dan pendingin pada bangunan. Lampu pada ruangan yang tidak dihuni dapat dimatikan secara otomatis, dan pendingin atau pemanas ruangan dapat diatur sesuai dengan jumlah orang di dalamnya. Hal ini membantu mengurangi konsumsi energi dan biaya operasional.
+
+Dalam aspek keamanan, deteksi hunian dapat dimanfaatkan untuk penyelamatan dari bencana dan deteksi intrusi. Jika suatu gedung dengan sistem deteksi hunian mengalami bencana, misalnya bencana alam atau serangan militer, informasi tentang hunian gedung bisa didapat sebelum terjadi bencana[^2]. Oleh karenanya, penting untuk menentukan cara mendeteksi hunian dari sebuah bangunan dengan efektif.
+
+Berbagai teknik telah diusulkan untuk mengatasi masalah ini. Teknik yang populer adalah dengan menggunakan sensor passive infrared (PIR)[^3] dan deteksi berbasis ultrasonic[^4]. Pendekatan lainnya meliputi menggunakan Wi-Fi untuk mendeteksi perangkat pada penghuni ruangan[^2] dan menggunakan backscattered light sensing, yang mendeteksi pantulan cahaya dari penghuni ruangan[^5]. Metode dengan menggunakan machine learning juga banyak diterapkan, misalnya dengan menggunakan model ML statistik pada data sensor[^6] maupun menggunakan kamera CCTV disertai algoritma deep learning[^7].
+
+[^1]: K. Sun, Q. Zhao, and J. Zou, “A review of building occupancy measurement systems,” Energy Build., vol. 216, p. 109965, Jun. 2020, doi: 10.1016/j.enbuild.2020.109965.
+[^2]: T. Fryza, T. Bravenec, and Z. Kohl, “Security and Reliability of Room Occupancy Detection Using Probe Requests in Smart Buildings,” in 2023 33rd International Conference Radioelektronika (RADIOELEKTRONIKA), Pardubice, Czech Republic: IEEE, Apr. 2023, pp. 1–6. doi: 10.1109/RADIOELEKTRONIKA57919.2023.10109085.
+[^3]: V. Verma, . D., P. Dash, and Dr. V. Kumar, “Occupancy Based Lighting Control Strategy Using a Network of Motion Detection Sensors for Energy Conservation in a Building,” Int. J. RECENT TRENDS Eng. Res., vol. 6, no. 6, pp. 33–38, Jun. 2020, doi: 10.23883/IJRTER.2020.6043.H2IOM.
+[^4]: A. Hammoud, M. Deriaz, and D. Konstantas, “UltraSense: A Self-Calibrating Ultrasound-Based Room Occupancy Sensing System,” Procedia Comput. Sci., vol. 109, pp. 75–83, 2017, doi: 10.1016/j.procs.2017.05.297.
+[^5]: O. E. Ouahabi, C. Fragner, A. P. Weiss, and E. Leitgeb, “Occupancy Determination by Backscattered Visible Light Sensing,” in 2023 46th MIPRO ICT and Electronics Convention (MIPRO), Opatija, Croatia: IEEE, May 2023, pp. 280–285. doi: 10.23919/MIPRO57284.2023.10159964.
+[^6]: L. M. Candanedo and V. Feldheim, “Accurate occupancy detection of an office room from light, temperature, humidity and CO 2 measurements using statistical learning models,” Energy Build., vol. 112, pp. 28–39, Jan. 2016, doi: 10.1016/j.enbuild.2015.11.071.
+[^7]: S. Hu, P. Wang, C. Hoare, and J. O’Donnell, “Building Occupancy Detection and Localization Using CCTV Camera and Deep Learning,” IEEE Internet Things J., vol. 10, no. 1, pp. 597–608, Jan. 2023, doi: 10.1109/JIOT.2022.3201877.
 
 ### Referensi Terkait
 
@@ -265,8 +277,4 @@ Dari diagram ini, kita dapat melihat bahwa model yang sudah di-tune memiliki per
 
 Dari hasil evaluasi diatas, didapat bahwa hyperparameter tuning dapat meningkatkan performa pada model Random Forest Classifier, terutama dalam kasus deteksi hunian.
 
-**---Ini adalah bagian akhir laporan---**
-
-Referensi:
-
-[^1]: S. Khoche, K. V. Chandrasekhar, G. V. K. Sasirekha, J. Bapat, and D. Das, “Occupancy Detection for Emergency Management of Smart Building Based on Indoor Localization: A Feasibility Study,” SN Comput. Sci., vol. 2, no. 6, p. 419, Nov. 2021, doi: 10.1007/s42979-021-00812-4.
+## Referensi:
