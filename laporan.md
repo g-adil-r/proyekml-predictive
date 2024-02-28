@@ -267,4 +267,6 @@ Dari hasil evaluasi diatas, didapat bahwa hyperparameter tuning dapat meningkatk
 
 **---Ini adalah bagian akhir laporan---**
 
+Referensi:
+
 [^1]: S. Khoche, K. V. Chandrasekhar, G. V. K. Sasirekha, J. Bapat, and D. Das, “Occupancy Detection for Emergency Management of Smart Building Based on Indoor Localization: A Feasibility Study,” SN Comput. Sci., vol. 2, no. 6, p. 419, Nov. 2021, doi: 10.1007/s42979-021-00812-4.
