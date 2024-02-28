@@ -20,12 +20,6 @@ Berbagai teknik telah diusulkan untuk mengatasi masalah ini. Teknik yang populer
 [^6]: L. M. Candanedo and V. Feldheim, “Accurate occupancy detection of an office room from light, temperature, humidity and CO 2 measurements using statistical learning models,” Energy Build., vol. 112, pp. 28–39, Jan. 2016, doi: 10.1016/j.enbuild.2015.11.071.
 [^7]: S. Hu, P. Wang, C. Hoare, and J. O’Donnell, “Building Occupancy Detection and Localization Using CCTV Camera and Deep Learning,” IEEE Internet Things J., vol. 10, no. 1, pp. 597–608, Jan. 2023, doi: 10.1109/JIOT.2022.3201877.
 
-### Referensi Terkait
-
-Sebuah studi berjudul ["Accurate occupancy detection of an office room from light, temperature, humidity and CO2 measurements using statistical learning models"](https://www.sciencedirect.com/science/article/abs/pii/S0378778815304357) oleh Luis M. Candanedo dan Veronique Feldheim melakukan deteksi hunain dengan menggunakan tiga model, yakni Linear Discriminant Analysis, Classification and Regression Trees, dan Random Forest. Hasilnya menunjukkan akurasi yang tinggi dari ketiga model tersebut.
-
-Studi lain berjudul ["Building Occupancy Detection and Localization Using CCTV Camera and Deep Learning"](https://ieeexplore.ieee.org/document/9868085) oleh Shushan Hu et al menggunakan data dari kamera CCTV dan model deep learning untuk mendeteksi hunian dari ruangan. Model juga berhasil untuk mendeteksi jumlah orang pada ruangan, serta lokasinya di ruangan tersebut. 
-
 ## 2. Business Understanding
 
 ### Problem Statements
