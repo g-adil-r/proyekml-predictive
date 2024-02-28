@@ -4,7 +4,7 @@
 
 ### Latar Belakang
 
-Deteksi hunian (*occupation detection*) menentukan apakah suatu ruangan sedang dihuni oleh seseorang menggunakan data yang didapat dari sensor, misalnya sensor cahaya, suhu, kelembapan, atau CO2. Deteksi hunian merupakan komponen penting di bidang Internet of Things (IoT), terutama dalam konteks *smart building*. Deteksi hunian sangat penting karena berdampak terhadap efisiensi energi, keamanan, dan kenyamanan. Misalnya, deteksi hunian dapat digunakan untuk mengontrol ventilasi, lampu, pemanas, dan pendingin pada bangunan sehingga dapat mengurangi penggunaan energi listrik. Deteksi hunian dapat juga digunakan untuk mendeteksi kehadiran orang yang masuk ke dalam ruangan atau bangunan tanpa izin. Oleh karenanya, penting untuk menentukan cara mendeteksi hunian dari sebuah bangunan dengan efektif.
+Deteksi hunian (*occupation detection*) menentukan apakah suatu ruangan sedang dihuni oleh seseorang menggunakan data yang didapat dari sensor, misalnya sensor cahaya, suhu, kelembapan, atau CO2. Deteksi hunian merupakan komponen penting di bidang Internet of Things (IoT), terutama dalam konteks *smart building*. Deteksi hunian sangat penting karena berdampak terhadap efisiensi energi, keamanan, dan kenyamanan.[^1] Misalnya, deteksi hunian dapat digunakan untuk mengontrol ventilasi, lampu, pemanas, dan pendingin pada bangunan sehingga dapat mengurangi penggunaan energi listrik. Deteksi hunian dapat juga digunakan untuk mendeteksi kehadiran orang yang masuk ke dalam ruangan atau bangunan tanpa izin. Oleh karenanya, penting untuk menentukan cara mendeteksi hunian dari sebuah bangunan dengan efektif.
 
 Berbagai solusi telah diusulkan untuk mengatasi masalah ini. Salah satu pendekatannya melibatkan penggunaan berbagai sensor, seperti sensor CO2, kelembapan, suhu, dan sensor cahaya. Sensor ini digunakan bersama dengan berbagai algoritma, seperti algortima berbasis data dan algoritma analitik. Teknik pembelajaran mesin atau *machine learning* juga digunakan untuk mendeteksi hunian menggunakan data sensor, misalnya dengan algoritma *decision trees*, *random forest*, *SVM*, serta *k-nearest neighbors*. Dengan memanfaatkan pendekatan ini, dimungkinkan untuk secara akurat menentukan hunian lingkungan dalam suatu ruangan sehingga meningkatkan efisiensi energi dan keamanan bangunan.
 
@@ -266,3 +266,5 @@ Dari diagram ini, kita dapat melihat bahwa model yang sudah di-tune memiliki per
 Dari hasil evaluasi diatas, didapat bahwa hyperparameter tuning dapat meningkatkan performa pada model Random Forest Classifier, terutama dalam kasus deteksi hunian.
 
 **---Ini adalah bagian akhir laporan---**
+
+[^1]: S. Khoche, K. V. Chandrasekhar, G. V. K. Sasirekha, J. Bapat, and D. Das, “Occupancy Detection for Emergency Management of Smart Building Based on Indoor Localization: A Feasibility Study,” SN Comput. Sci., vol. 2, no. 6, p. 419, Nov. 2021, doi: 10.1007/s42979-021-00812-4.
