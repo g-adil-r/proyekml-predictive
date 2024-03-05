@@ -66,6 +66,8 @@ Berikut adalah hasil `df.describe()` dari data:
 |   75% |   21.525000  |   31.290000  |  301.000000  |  804.666667  |    0.004832   |   0.000000   |
 |   max |   24.408333  |   39.500000  |  1697.250000 |  2076.500000 |    0.006476   |   1.000000   |
 
+_Tabel 3.1: Hasil `df.describe()` pada data_
+
 ### Exploratory Data Analysis
 
 Berikut adalah hasil analisis dari data tersebut:
@@ -74,7 +76,7 @@ Berikut adalah hasil analisis dari data tersebut:
 
     Berikut adalah plot kemunculan kelas 0 (tidak berpenghuni) dan 1 (berpenghuni) pada fitur Occupancy
 
-    ![](pic/03-02.png)
+    ![](pic/03-01.png)
     
     _Gambar 3.1: Plot distribusi kelas_
 
@@ -84,11 +86,11 @@ Berikut adalah hasil analisis dari data tersebut:
 
     Berikut adalah grafik histogram pada masing-masing fitur numerik pada data
 
-    ![](pic/03-03.png)
+    ![](pic/03-02.png)
 
      _Gambar 3.2: Grafik histogram fitur_
 
-    Dari grafik diatas, didapat observasi sebagai berikut:
+    Dari gambar 3.2, didapat observasi sebagai berikut:
 
     - Pada fitur temperature, sebagian besar data berkumpul di sekitar 20-21 derajat
     - Pada fitur humidity, distribusi data lebih merata dengan beberapa puncak
@@ -100,10 +102,11 @@ Berikut adalah hasil analisis dari data tersebut:
 
     Berikut adalah grafik histogram tiap fitur numerik pada data, dikelompokkan berdasarkan kelas.
 
-    ![](pic/03-04.png)
+    ![](pic/03-03.png)
+
     _Gambar 3.3: Grafik histogram fitur berdasarkan kelas_
 
-    Dari grafik diatas, didapat observasi sebagai berikut:
+    Dari gambar 3.3, didapat observasi sebagai berikut:
 
     - Data temperature pada kelas Not Occupied rata-rata ada di antara 20 dan 21, sedangkan pada kelas Occupied, rata-ratanya ada di sekitar 22
     - Data light pada kelas Not Occupied sebagian besar ada di bawah 250, sedangkan pada kelas Occupied rata-ratanya ada di sekitar 500
@@ -114,10 +117,11 @@ Berikut adalah hasil analisis dari data tersebut:
 
     Berikut adalah diagram boxplot dari masing-masing fitur numerik, dikelompokkan berdasarkan kelas
 
-    ![](pic/03-05.png)
+    ![](pic/03-04.png)
+
     _Gambar 3.4: Grafik boxplot fitur berdasarkan kelas_
 
-    Dari grafik diatas, didapat observasi sebagai berikut:
+    Dari gambar 3.4, didapat observasi sebagai berikut:
 
     - Pada fitur temperature dan CO2, terdapat beberapa outlier pada kedua kelas, baik pada kelas Not Occupied maupun kelas Occupied.
     - Pada fitur humidity, tidak ada outlier yang signifikan.
@@ -129,10 +133,11 @@ Berikut adalah hasil analisis dari data tersebut:
 
     Berikut adalah hasil Correlation Matrix dari data:
 
-    ![](pic/03-07.png)
+    ![](pic/03-05.png)
+
     _Gambar 3.5: Correlation matrix_
 
-    Dari gambar diatas, terlihat bahwa fitur Light berkorelasi paling tinggi dengan fitur Occupancy dengan koefisien sebesar 0,91. Fitur Humidity berkorelasi paling rendah dengan koefisien sebesar 0,05.
+    Dari gambar 3.5, terlihat bahwa fitur Light berkorelasi paling tinggi dengan fitur Occupancy dengan koefisien sebesar 0,91. Fitur Humidity berkorelasi paling rendah dengan koefisien sebesar 0,05.
     
 ## 4. Data Preparation
 
@@ -202,11 +207,15 @@ Tahapan melakukan modellingnya adalah sebagai berikut:
     | max_features      | 'log2' |
     | max_depth         | 5      |
 
+    _Tabel 5.1: Nilai hyperparameter setelah dilakukan random search_
+
 5. Interpretasi model
 
-    *Feature importances* dapat dihitung dengan menggunakan `feature_importances_` pada model. Berikut adalah hasil perhitungan *feature importances* dari model baseline dan model yang sudah di-tuned:
+    *Feature importances* dapat dihitung dengan menggunakan `feature_importances_` pada model. Berikut adalah grafik hasil perhitungan *feature importances* dari model baseline dan model yang sudah di-tuned:
 
     ![](pic/05-01.png)
+
+    _Gambar 5.1: Grafik feature importance dari kedua model_
 
     Dari diagram diatas, terlihat bahwa dalam kedua model, fitur light memiliki pengaruh paling signifikan dalam kedua model, sedangkan fitur CO2 dan temperature memiliki pengaruh yang relatif rendah. Hal ini menunjukkan bahwa intensitas cahaya berperan penting dalam deteksi hunian.
 
@@ -219,6 +228,8 @@ Metrik evaluasi model yang digunakan adalah sebagai berikut:
     Confusion Matrix berisi prediksi model dibandingkan dengan yang seharusnya. Tiap baris menunjukkan kelas yang benar, dan tiap kolom menunjukkan prediksi yang dilakukan model. Contoh confusion matrix adalah sebagai berikut:
 
     ![](pic/06-01.png)
+
+    _Gambar 6.1: Contoh confusion matrix_
 
     Pada gambar diatas, ada 13 data yang berhasil diprediksi sebagai setosa, 10 data yang benar diprediksi sebagai versicolor, dan 9 data yang benar diprediksi sebagai virginica. Namun, ada 6 data yang diprediksi sebagai virginica, padahal seharusnya versicolor. Idealnya, hasil confusion matrix memiliki nilai yang besar di bagian diagonal utamanya.
 
@@ -273,6 +284,8 @@ Metrik evaluasi model yang digunakan adalah sebagai berikut:
 
     ![](pic/06-02.png)
 
+    _Gambar 6.2: Contoh grafik ROC_
+
     AUC (Area Under Curve) menunjukkan luas daerah di bawah grafik ROC. Nilainya memiliki rentang dari 0 hingga 1. Nilai AUC mendekati 1 menunjukkan performa yang baik, sedangkan nilai AUC sekitar 0.5 menandakan performa yang tidak lebih baik dari memilih kelas secara acak. Nilai AUC dibawah 0.5 menandakan performa yang lebih buruk dari prediksi acak.
 
 Dibawah adalah nilai accuracy, F1 Score, serta ROC-AUC score dari model baseline dan model yang sudah dilakukan hyperparameter tuning. Nilai metrik didapat menggunakan data testing.
@@ -283,17 +296,23 @@ Dibawah adalah nilai accuracy, F1 Score, serta ROC-AUC score dari model baseline
 |  F1 Score | 0.940328 | 0.977734 |
 |  ROC-AUC  | 0.963449 | 0.991250 |
 
+_Tabel 6.1: Nilai metrik pada model baseline dan yang sudah di-tune_
+
 Berikut adalah diagram dari tabel diatas:
 
-![](pic/06-07.png)
+![](pic/06-03.png)
 
-Dari data diatas, terlihat bahwa model baseline memiliki akurasi dan f1 score yang lebih baik dari model yang di-tune pada data training. Namun pada data test, model baseline memiliki akurasi dan f1 score yang lebih buruk dari model yang di-tune
+_Gambar 6.3: Diagram nilai metrik pada model baseline dan yang sudah di-tune_
+
+Dari tabel 6.1 dan gambar 6.3 tersebut, terlihat bahwa model baseline memiliki akurasi dan f1 score yang lebih baik dari model yang di-tune pada data training. Namun pada data test, model baseline memiliki akurasi dan f1 score yang lebih buruk dari model yang di-tune
 
 Berikut adalah diagram confusion matrix menggunakan dataset test dari masing-masing model:
 
-![](pic/06-08.png)
+![](pic/06-04.png)
 
-Dari diagram diatas, didapat observasi berikut:
+_Gambar 6.4: Diagram confusion matrix pada model baseline dan yang sudah di-tune_
+
+Dari gambar 6.4, didapat observasi berikut:
 
 - Model Baseline:
 
