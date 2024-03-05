@@ -136,7 +136,11 @@ Preprocessing data di bawah ini dilakukan pada data training.
     Fitur date adalah fitur timestamp unik dari masing-masing data. Fitur date didrop dengan tujuan agar model dapat melakukan deteksi hunian terlepas dari waktu kejadian dan hanya menggunakan fitur lain seperti cahaya. 
     Fitur HumidityRatio adalah fitur turunan dari humidity dan temperature, sehingga dapat didrop. Fitur Humidity juga didrop karena memiliki korelasi yang rendah denga fitur Occupancy.
 
-2. Oversampling dengan metode SMOTE
+2. Normalisasi data
+
+
+
+3. Oversampling dengan metode SMOTE
 
     Data kelas occupied (kelas 1) jauh lebih sedikit dari data kelas not occupied (kelas 0). Hal ini dapat memberikan bias pada model. Untuk mencegahnya, dilakukan oversampling dengan menggunakan metode SMOTE
 
@@ -177,7 +181,7 @@ Tahapan melakukan modellingnya adalah sebagai berikut:
 
 3. Inisiasi Random Search
 
-    paramRanges menyatakan rentang hyperparameter yang akan dipilih oleh Randomized Search. Parameter `n_iter` menyatakan berapa model yang akan diuji dengan hyperparameter yang berbeda. Disini, Random Search akan menguji 20 kombinasi hyperparameter yang berbeda.
+    paramRanges menyatakan rentang hyperparameter yang akan dipilih oleh Randomized Search. Parameter `n_iter` menyatakan berapa model yang akan diuji dengan hyperparameter yang berbeda. Disini, Random Search akan menguji 50 kombinasi hyperparameter yang berbeda.
 
 4. Melakukan Random Search pada model Random Forest
 
@@ -244,6 +248,8 @@ Metrik evaluasi model yang digunakan adalah sebagai berikut:
     $$\text{F1 Score} = 2\times\frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}$$
 
     Semakin besar nilai f1 scorenya, semakin bagus performa modelnya. F1 score umumnya digunakan pada permasalahan klasifikasi yang terdapat ketidakseimbangan kelas.
+
+4. ROC-AUC score
 
 Berikut adalah nilai accuracy dan f1 dari model baseline dan model yang sudah dilakukan hyperparameter tuning:
 
