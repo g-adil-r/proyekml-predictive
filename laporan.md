@@ -172,7 +172,7 @@ Proses improvement pada model akan dilakukan dengan hyperparameter tuning menggu
 - max_features (jumlah fitur pada setiap split): sqrt, log2, None
 - min_samples_split : 2 sampai 6
 
-Dari rentang di atas, 50 model dibuat dengan hyperparameter acak, lalu dipilih model dengan accuracy terbaik.
+Dari rentang di atas, beberapa model dibuat dengan hyperparameter acak. Kemudian, masing-masing model dilatih dan diuji akurasinya dengan cross-validation. Lalu dipilih model dengan akurasi terbaik.
 
 Setelah membuat dan melatih model baseline dan model yang sudah di-tuned, dilakukan interpretasi model dengan mengukur *feature importances*, yakni mengukur fitur mana yang paling berpengaruh terhadap prediksi model. *Feature importances* dapat dihitung dengan memanggil method `feature_importances_` pada model.
 
@@ -195,8 +195,8 @@ Tahapan melakukan modellingnya adalah sebagai berikut:
     Random search juga menggunakan training data yang sudah dilakukan SMOTE
     Model yang memiliki performa terbaik setelah melakukan random search adalah yang memiliki parameter sebagai berikut:
 
-    | HyperParameter    | Value  |
-    |------------------:|:-------|
+    | Hyperparameter    | Value  |
+    |:------------------|:------:|
     | n_estimators      | 166    |
     | min_samples_split | 5      |
     | max_features      | 'log2' |
