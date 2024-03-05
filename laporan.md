@@ -342,6 +342,6 @@ Dari diagram ini, kita dapat melihat bahwa model yang sudah di-tune memiliki per
 
 ## 7. Kesimpulan
 
-Dari hasil evaluasi diatas, didapat bahwa hyperparameter tuning dapat meningkatkan performa pada model Random Forest Classifier untuk deteksi hunian. Model yang sudah di-tune menunjukkan nilai akurasi, skor F1, dan skor ROC-AUC yang lebih tinggi, serta memiliki confusion matrix yang lebih baik. Dalam konteks bisnis, peningkatan performa model ini sangat berharga. Dengan model yang lebih akurat, kita dapat lebih efisien dalam mengelola energi yang pada akhirnya dapat menghemat biaya. Selain itu, model yang lebih akurat juga dapat meningkatkan keamanan dengan mendeteksi keberadaan orang dalam ruangan dengan lebih tepat. Oleh karena itu, peningkatan performa ini dapat memberikan nilai tambah yang signifikan bagi bisnis.
+Dari hasil evaluasi diatas, didapat bahwa hyperparameter tuning dapat meningkatkan performa pada model Random Forest Classifier untuk deteksi hunian. Model yang sudah di-tune menunjukkan nilai akurasi, skor F1, dan skor ROC-AUC yang lebih tinggi, serta memiliki confusion matrix yang lebih baik. Dalam konteks bisnis, peningkatan performa model ini sangat berharga. Dengan model yang lebih akurat, pengelolaan energi dapat dilakukan lebih efisien yang pada akhirnya dapat menghemat biaya. Selain itu, model yang lebih akurat juga dapat meningkatkan keamanan dengan mendeteksi keberadaan orang dalam ruangan dengan lebih tepat. Oleh karena itu, peningkatan performa ini dapat memberikan nilai tambah yang signifikan bagi bisnis.
 
 ## Referensi:
