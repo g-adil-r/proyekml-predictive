@@ -149,7 +149,7 @@ Preprocessing data di bawah ini dilakukan pada data training.
 
 3. Oversampling dengan metode SMOTE
 
-    Data kelas occupied (kelas 1) jauh lebih sedikit dari data kelas not occupied (kelas 0). Hal ini dapat memberikan bias pada model. Untuk mencegahnya, dilakukan oversampling dengan menggunakan metode SMOTE
+    Data kelas occupied (kelas 1) jauh lebih sedikit dari data kelas not occupied (kelas 0). Hal ini dapat memberikan bias pada model. Untuk mencegahnya, dilakukan oversampling dengan menggunakan metode SMOTE. Metode SMOTE dipilih karena algoritmanya yang cukup sederhana dibandingkan metode lain, namun dapat mengurangi resiko overfitting yang muncul dari random oversampling.
 
 ## 5. Modeling
 
