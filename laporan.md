@@ -10,7 +10,7 @@ Dalam aspek efisiensi energi, deteksi hunian dapat membantu menghemat energi seb
 
 Dalam aspek keamanan, deteksi hunian dapat dimanfaatkan untuk penyelamatan dari bencana dan deteksi intrusi. Jika suatu gedung dengan sistem deteksi hunian mengalami bencana, misalnya bencana alam atau serangan militer, informasi tentang hunian gedung bisa didapat sebelum terjadi bencana[^2]. Oleh karenanya, penting untuk menentukan cara mendeteksi hunian dari sebuah bangunan dengan efektif.
 
-Berbagai teknik telah diusulkan untuk mengatasi masalah ini. Teknik yang populer adalah dengan menggunakan sensor passive infrared (PIR)[^3] dan deteksi berbasis ultrasonic[^4]. Pendekatan lainnya meliputi menggunakan Wi-Fi untuk mendeteksi perangkat pada penghuni ruangan[^2] dan menggunakan backscattered light sensing, yang mendeteksi pantulan cahaya dari penghuni ruangan[^5]. Metode dengan menggunakan machine learning juga banyak diterapkan, misalnya dengan menggunakan model ML statistik pada data sensor[^6] maupun menggunakan kamera CCTV disertai algoritma deep learning[^7].
+Berbagai teknik telah diusulkan untuk mengatasi masalah ini. Teknik yang populer adalah dengan menggunakan sensor passive infrared (PIR)[^3] dan deteksi berbasis ultrasonic[^4]. Pendekatan lainnya meliputi menggunakan Wi-Fi untuk mendeteksi perangkat pada penghuni ruangan[^2] dan menggunakan backscattered light sensing, yang mendeteksi pantulan cahaya dari lampu yang dipantulkan oleh penghuni ruangan[^5]. Metode dengan menggunakan machine learning juga banyak diterapkan, misalnya dengan menggunakan model ML statistik pada data sensor[^6] maupun menggunakan kamera CCTV yang disertai algoritma deep learning[^7].
 
 [^1]: K. Sun, Q. Zhao, and J. Zou, “A review of building occupancy measurement systems,” Energy Build., vol. 216, p. 109965, Jun. 2020, doi: 10.1016/j.enbuild.2020.109965.
 [^2]: T. Fryza, T. Bravenec, and Z. Kohl, “Security and Reliability of Room Occupancy Detection Using Probe Requests in Smart Buildings,” in 2023 33rd International Conference Radioelektronika (RADIOELEKTRONIKA), Pardubice, Czech Republic: IEEE, Apr. 2023, pp. 1–6. doi: 10.1109/RADIOELEKTRONIKA57919.2023.10109085.
@@ -78,7 +78,7 @@ Berikut adalah hasil analisis dari data tersebut:
     
     _Gambar 3.1: Plot distribusi kelas_
 
-    Dari diagram ini, terlihat bahwa ada sekitar 16.000 data yang termasuk ke kelas 0 (Not Occupied), sementara hanya sekitar 4.000 data yang termasuk ke kelas 1 (Occupied). Ini menunjukkan bahwa dalam dataset ini, ada lebih banyak data Not Occupied dibandingkan dengan yang Occupied, dengan perbandingan sekitar 4:1. Informasi ini penting karena dapat mempengaruhi bagaimana model dilatih dan bagaimana performanya pada data yang tidak seimbang.
+    Pada gambar 3.1, terlihat bahwa ada sekitar 16.000 data yang termasuk ke kelas 0 (Not Occupied), sementara hanya sekitar 4.000 data yang termasuk ke kelas 1 (Occupied). Ini menunjukkan bahwa dalam dataset ini, ada lebih banyak data Not Occupied dibandingkan dengan yang Occupied, dengan perbandingan sekitar 4:1. Informasi ini penting karena dapat mempengaruhi bagaimana model dilatih dan bagaimana performanya pada data yang tidak seimbang.
 
 2. Plot histogram fitur
 
@@ -297,17 +297,17 @@ Dari diagram diatas, didapat observasi berikut:
 
 - Model Baseline:
 
-    - True Negative (TN): 9005 sampel benar diprediksi sebagai not occupied.
-    - False Positive (FP): 391 sampel salah diprediksi sebagai occupied.
-    - False Negative (FN): 64 sampel salah diprediksi sebagai not occupied.
-    - True Positive (TP): 2957 sampel benar diprediksi sebagai occupied.
+    - True Negative (TN): 9185 sampel benar diprediksi sebagai not occupied.
+    - False Positive (FP): 211 sampel salah diprediksi sebagai occupied.
+    - False Negative (FN): 153 sampel salah diprediksi sebagai not occupied.
+    - True Positive (TP): 2868 sampel benar diprediksi sebagai occupied.
 
 - Model Tuned:
 
-    - True Negative (TN): 9287 sampel benar diprediksi sebagai not occupied.
-    - False Positive (FP): 109 sampel salah diprediksi sebagai occupied.
-    - False Negative (FN): 16 sampel salah diprediksi sebagai not occupied.
-    - True Positive (TP): 3005 sampel benar diprediksi sebagai occupied.
+    - True Negative (TN): 9272 sampel benar diprediksi sebagai not occupied.
+    - False Positive (FP): 124 sampel salah diprediksi sebagai occupied.
+    - False Negative (FN): 13 sampel salah diprediksi sebagai not occupied.
+    - True Positive (TP): 3008 sampel benar diprediksi sebagai occupied.
 
 Dari diagram ini, kita dapat melihat bahwa model yang sudah di-tune memiliki performa yang lebih baik dibandingkan dengan Model Baseline, dengan jumlah kesalahan prediksi yang lebih sedikit. Selain itu, jumlah False Positive cenderung lebih besar daripada jumlah False Negative.
 
