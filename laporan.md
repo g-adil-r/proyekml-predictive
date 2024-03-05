@@ -150,7 +150,7 @@ Preprocessing data di bawah ini dilakukan pada data training.
 
 2. Normalisasi data
 
-    Algoritma machine learning akan bekerja lebih cepat dan memiliki performa lebih baik jika data memiliki skala relatif sama, sehingga dilakukan normalisasi untuk menyeragamkan skala data. Normalisasi dilakukan dengan StandardScaler pada fitur Temperature, Light, dan CO2.
+    Algoritma machine learning akan bekerja lebih cepat dan memiliki performa lebih baik jika data memiliki skala relatif sama dan memiliki distribusi normal, sehingga dilakukan normalisasi untuk menyeragamkan skala data. Normalisasi dilakukan dengan StandardScaler pada fitur Temperature, Light, dan CO2.
 
 3. Oversampling dengan metode SMOTE
 
