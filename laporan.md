@@ -75,6 +75,8 @@ Berikut adalah hasil analisis dari data tersebut:
     Berikut adalah plot kemunculan kelas 0 (tidak berpenghuni) dan 1 (berpenghuni) pada fitur Occupancy
 
     ![](pic/03-02.png)
+    
+    _Gambar 3.1: Plot distribusi kelas_
 
     Dari diagram ini, terlihat bahwa ada sekitar 16.000 data yang termasuk ke kelas 0 (Not Occupied), sementara hanya sekitar 4.000 data yang termasuk ke kelas 1 (Occupied). Ini menunjukkan bahwa dalam dataset ini, ada lebih banyak data Not Occupied dibandingkan dengan yang Occupied, dengan perbandingan sekitar 4:1. Informasi ini penting karena dapat mempengaruhi bagaimana model dilatih dan bagaimana performanya pada data yang tidak seimbang.
 
@@ -83,6 +85,8 @@ Berikut adalah hasil analisis dari data tersebut:
     Berikut adalah grafik histogram pada masing-masing fitur numerik pada data
 
     ![](pic/03-03.png)
+
+     _Gambar 3.2: Grafik histogram fitur_
 
     Dari grafik diatas, didapat observasi sebagai berikut:
 
@@ -97,6 +101,7 @@ Berikut adalah hasil analisis dari data tersebut:
     Berikut adalah grafik histogram tiap fitur numerik pada data, dikelompokkan berdasarkan kelas.
 
     ![](pic/03-04.png)
+    _Gambar 3.3: Grafik histogram fitur berdasarkan kelas_
 
     Dari grafik diatas, didapat observasi sebagai berikut:
 
@@ -110,6 +115,7 @@ Berikut adalah hasil analisis dari data tersebut:
     Berikut adalah diagram boxplot dari masing-masing fitur numerik, dikelompokkan berdasarkan kelas
 
     ![](pic/03-05.png)
+    _Gambar 3.4: Grafik boxplot fitur berdasarkan kelas_
 
     Dari grafik diatas, didapat observasi sebagai berikut:
 
@@ -124,6 +130,7 @@ Berikut adalah hasil analisis dari data tersebut:
     Berikut adalah hasil Correlation Matrix dari data:
 
     ![](pic/03-07.png)
+    _Gambar 3.5: Correlation matrix_
 
     Dari gambar diatas, terlihat bahwa fitur Light berkorelasi paling tinggi dengan fitur Occupancy dengan koefisien sebesar 0,91. Fitur Humidity berkorelasi paling rendah dengan koefisien sebesar 0,05.
     
@@ -241,7 +248,7 @@ Metrik evaluasi model yang digunakan adalah sebagai berikut:
     dimana:
 
     - $TP$: *True Positive*: Banyaknya sampel yang benar diprediksi sebagai positif
-    - $FN$: *False negative*: Banyaknya sampel yang salah diprediksi sebagai negatif
+    - $FN$: *False Negative*: Banyaknya sampel yang salah diprediksi sebagai negatif
 
     Dari nilai precision dan recall diatas, didapat nilai F1 score sebagai berikut:
 
@@ -251,14 +258,30 @@ Metrik evaluasi model yang digunakan adalah sebagai berikut:
 
 4. ROC-AUC score
 
-Berikut adalah nilai accuracy dan f1 dari model baseline dan model yang sudah dilakukan hyperparameter tuning:
+    ROC-AUC score adalah skor yang didapat dari grafik ROC (Receiver Operating Characteristics). Grafik ROC sendiri adalah grafik yang didapat dengan memplot True Positive Rate (TPR) atau Recall dengan False Negative Rate (FPR) di setiap threshold yang berbeda.
+
+    Rumus dari FPR adalah sebagai berikut:
+
+    $$\text{FPR} = \frac{FP}{FP + TN}$$
+
+    dimana:
+
+    - $FP$: *False Positive*: Banyaknya sampel yang salah diprediksi sebagai positif
+    - $TN$: *True Negative*: Banyaknya sampel yang benar diprediksi sebagai negatif
+
+    Contoh grafik ROC adalah sebagai berikut:
+
+    ![](pic/06-02.png)
+
+    AUC (Area Under Curve) menunjukkan luas daerah di bawah grafik ROC. Nilainya memiliki rentang dari 0 hingga 1. Nilai AUC mendekati 1 menunjukkan performa yang baik, sedangkan nilai AUC sekitar 0.5 menandakan performa yang tidak lebih baik dari memilih kelas secara acak. Nilai AUC dibawah 0.5 menandakan performa yang lebih buruk dari prediksi acak.
+
+Dibawah adalah nilai accuracy, F1-Score, serta ROC-AUC score dari model baseline dan model yang sudah dilakukan hyperparameter tuning. Nilai metrik didapat menggunakan data testing.
 
 |           | Baseline |   Tuned  |
 |----------:|:--------:|:--------:|
-| Train acc |    1.0   | 0.992672 |
-|  Train F1 |    1.0   |  0.99271 |
-|  Test acc | 0.963357 | 0.989933 |
-|  Test F1  |  0.92856 | 0.979625 |
+| Accuracy  | 0.970685 | 0.988967 |
+|  F1 Score | 0.940328 | 0.977734 |
+|  ROC-AUC  | 0.963449 | 0.991250 |
 
 Berikut adalah diagram dari tabel diatas:
 
