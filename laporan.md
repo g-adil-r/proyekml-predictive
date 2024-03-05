@@ -115,32 +115,20 @@ Berikut adalah hasil analisis dari data tersebut:
 
 5. Correlation Matrix
 
-    Metode Pearson, yang merupakan default pada `df.corr()`, umumnya digunakan untuk memeriksa korelasi dari dua fitur kontinyu. Pada data yang digunakan, fitur occupancy merupakan fitur diskret (0 dan 1), sedangkan fitur lainnya adalah fitur kontinyu, sehingga kurang cocok menggunakan metode Pearson.
-
-    Disini, metode tes korelasi yang digunakan adalah metode *Cramer's V* atau koefisien Cramer yang lebih sesuai untuk kondisi tersebut. Koefisien Cramer dapat dicari dengan rumus
-
-    ![](pic/03-06.png)
-
-    - χ2 = Nilai statistik Chi-square
-    - n = Jumlah observasi
-    - r = Jumlah baris tabel kontingensi
-    - c = Jumlah kolom tabel kontingensi
-
-    Koefisien bernilai mendekati 1 menandakan korelasi yang kuat, sedangkan koefisien bernilai mendekati 0 menandakan korelasi yang lemah.
-
-    Dengan menggunakan metode tersebut, didapat Correlation Matrix sebagai berikut:
+    Berikut adalah hasil Correlation Matrix dari data:
 
     ![](pic/03-07.png)
 
-    Dari gambar diatas, terlihat bahwa fitur Light berkorelasi paling tinggi dengan fitur Occupancy dengan koefisien sebesar 0,93. Fitur Humidity berkorelasi paling rendah dengan koefisien sebesar 0,52. Semua fitur numerik memiliki koefisien diatas 0,5.
+    Dari gambar diatas, terlihat bahwa fitur Light berkorelasi paling tinggi dengan fitur Occupancy dengan koefisien sebesar 0,91. Fitur Humidity berkorelasi paling rendah dengan koefisien sebesar 0,05.
     
 ## 4. Data Preparation
 
 Preprocessing data di bawah ini dilakukan pada data training.
 
-1. Drop fitur HumidityRatio dan date
+1. Drop fitur date, HumidityRatio, dan Humidity
 
-    Fitur date adalah fitur timestamp unik dari masing-masing data. Fitur date didrop dengan tujuan agar model dapat melakukan deteksi hunian terlepas dari waktu kejadian dan hanya menggunakan fitur lain seperti cahaya. Sedangkan fitur HumidityRatio adalah fitur turunan dari humidity dan temperature, sehingga dapat didrop pula
+    Fitur date adalah fitur timestamp unik dari masing-masing data. Fitur date didrop dengan tujuan agar model dapat melakukan deteksi hunian terlepas dari waktu kejadian dan hanya menggunakan fitur lain seperti cahaya. 
+    Fitur HumidityRatio adalah fitur turunan dari humidity dan temperature, sehingga dapat didrop. Fitur Humidity juga didrop karena memiliki korelasi yang rendah denga fitur Occupancy.
 
 2. Oversampling dengan metode SMOTE
 
@@ -164,8 +152,14 @@ Sedangkan kekurangan dari algoritma ini adalah:
 
 Proses improvement pada model akan dilakukan dengan hyperparameter tuning menggunakan metode random search. Hyperparameter akan dipilih secara acak dari rentang berikut:
 
-- n_estimator (jumlah tree pada model): 100, 125, 150, 175, 200, 225, dst. sampai 500
-- max_depth (maksimal depth tiap tree): 3 sampai 20
+- n_estimator (jumlah tree pada model): 25 sampai 500
+- max_depth (maksimal depth tiap tree): 3 sampai 20, atau None
+- max_features (jumlah fitur pada setiap split): sqrt, log2, None
+- min_samples_split : 2 sampai 6
+
+Dari rentang di atas, 50 model dibuat dengan hyperparameter acak, lalu dipilih model dengan accuracy terbaik.
+
+Setelah membuat dan melatih model baseline dan model yang sudah di-tuned, dilakukan interpretasi model dengan mengukur *feature importances*, yakni mengukur fitur mana yang paling berpengaruh terhadap prediksi model. *Feature importances* dapat dihitung dengan memanggil method `feature_importances_` pada model.
 
 Tahapan melakukan modellingnya adalah sebagai berikut:
 
@@ -184,7 +178,13 @@ Tahapan melakukan modellingnya adalah sebagai berikut:
 4. Melakukan Random Search pada model Random Forest
 
     Random search juga menggunakan training data yang sudah dilakukan SMOTE
-    Model yang memiliki performa terbaik setelah melakukan random search adalah yang memiliki parameter `n_estimators` sebesar 375 dan `max_depth` sebesar 3.
+    Model yang memiliki performa terbaik setelah melakukan random search adalah yang memiliki parameter sebagai berikut:
+
+5. Interpretasi model
+
+    Berikut adalah hasil perhitungan *feature importances* dari model baseline dan model yang sudah di-tuned:
+
+    ![](pic/05-01.png)
 
 ## 6. Evaluation
 
