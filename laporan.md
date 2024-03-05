@@ -76,7 +76,7 @@ Berikut adalah hasil analisis dari data tersebut:
 
     ![](pic/03-02.png)
 
-    Terlihat bahwa kelas Occupied lebih sedikit dari kelas Not Occupied. Hal ini dapat mempengaruhi model.
+    Dari diagram ini, terlihat bahwa ada sekitar 16.000 data yang termasuk ke kelas 0 (Not Occupied), sementara hanya sekitar 4.000 data yang termasuk ke kelas 1 (Occupied). Ini menunjukkan bahwa dalam dataset ini, ada lebih banyak data Not Occupied dibandingkan dengan yang Occupied, dengan perbandingan sekitar 4:1. Informasi ini penting karena dapat mempengaruhi bagaimana model dilatih dan bagaimana performanya pada data yang tidak seimbang.
 
 2. Plot histogram fitur
 
@@ -84,7 +84,13 @@ Berikut adalah hasil analisis dari data tersebut:
 
     ![](pic/03-03.png)
 
-    Dari grafik diatas, terlihat bahwa fitur Light dan CO2 sebagian besar berukuran kecil - fitur Light banyak di bawah 100, dan CO2 banyak di bawah 600. Fitur lainnya memiliki persebaran yang lebih normal
+    Dari grafik diatas, didapat observasi sebagai berikut:
+
+    - Pada fitur temperature, sebagian besar data berkumpul di sekitar 20-21 derajat
+    - Pada fitur humidity, distribusi data lebih merata dengan beberapa puncak
+    - Pada fitur light, sebaran data sangat rendah pada nilai tinggi, menunjukkan bahwa sebagian besar pengukuran cahaya berada pada kisaran rendah
+    - Pada fitur CO2, pola serupa dengan fitur light, dengan konsentrasi tinggi pada nilai rendah
+    - Pada fitur HumidityRatio, distribusi data juga merata dengan beberapa puncak
 
 3. Plot histogram fitur tiap kelas
 
@@ -178,11 +184,20 @@ Tahapan melakukan modellingnya adalah sebagai berikut:
     Random search juga menggunakan training data yang sudah dilakukan SMOTE
     Model yang memiliki performa terbaik setelah melakukan random search adalah yang memiliki parameter sebagai berikut:
 
+    | HyperParameter    | Value  |
+    |------------------:|:-------|
+    | n_estimators      | 166    |
+    | min_samples_split | 5      |
+    | max_features      | 'log2' |
+    | max_depth         | 5      |
+
 5. Interpretasi model
 
     Berikut adalah hasil perhitungan *feature importances* dari model baseline dan model yang sudah di-tuned:
 
     ![](pic/05-01.png)
+
+    Dari diagram diatas, terlihat bahwa dalam kedua model, fitur light memiliki pengaruh paling signifikan dalam kedua model, sedangkan fitur CO2 dan temperature memiliki pengaruh yang relatif rendah. Hal ini menunjukkan bahwa intensitas cahaya berperan penting dalam deteksi hunian.
 
 ## 6. Evaluation
 
