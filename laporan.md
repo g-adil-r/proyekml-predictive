@@ -314,7 +314,7 @@ Dari tabel 6.1 dan gambar 6.3 tersebut, didapat hasil evaluasi sebagai berikut:
 
 - Nilai accuracy meningkat dari 0.970685 pada model baseline menjadi 0.988967 pada model tuned. Hal ini menunjukkan bahwa model tuned lebih akurat dalam membuat prediksi dibandingkan dengan model baseline.
 - Nilai F1 Score meningkat dari 0.940328 pada model baseline menjadi 0.977734 pada model tuned. Hal ini menunjukkan peningkatan kinerja model dalam memprediksi kelas positif.
-- Nilai ROC-AUC meningkat dari 0.963449 pada model baseline menjadi 0.991250 pada model tuned. Hal ini menunjukkan bahwa model tuned memiliki kemampuan yang lebih baik untuk membedakan antara kelas positif dan negatif.
+- Nilai ROC-AUC meningkat dari 0.963449 pada model baseline menjadi 0.991250 pada model tuned. Hal ini menunjukkan bahwa model tuned memiliki kemampuan yang lebih baik untuk membedakan antara kelas occupied dan not occupied.
 
 Berikut adalah diagram confusion matrix menggunakan dataset test dari masing-masing model:
 
