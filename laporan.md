@@ -142,10 +142,8 @@ Kelebihan dari algoritma ini adalah:
 - Mampu menangani noise dan variasi dalam data
 - Dapat menangani data non-linear dengan baik
 - Risiko overfitting lebih rendah
-- Akurasi yang lebih baik daripada algoritma klasifikasi lainnya
 
 Sedangkan kekurangan dari algoritma ini adalah:
-- Sulit menginterpretasikan pengaruh setiap fitur dalam membuat keputusan
 - Sulit menangani data dengan fitur yang sangat banyak atau data berdimensi tinggi
 - Membutuhkan banyak proses komputasi
 - Waktu komputasi pada dataset berskala besar relatif lambat
