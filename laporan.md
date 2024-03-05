@@ -145,7 +145,7 @@ Preprocessing data di bawah ini dilakukan pada data training.
 
 2. Normalisasi data
 
-
+    
 
 3. Oversampling dengan metode SMOTE
 
