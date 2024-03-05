@@ -145,11 +145,11 @@ Preprocessing data di bawah ini dilakukan pada data training.
 
 2. Normalisasi data
 
-    
+    Algoritma machine learning akan bekerja lebih cepat dan memiliki performa lebih baik jika data memiliki skala relatif sama, sehingga dilakukan normalisasi untuk menyeragamkan skala data. Normalisasi dilakukan dengan StandardScaler pada fitur Temperature, Light, dan CO2.
 
 3. Oversampling dengan metode SMOTE
 
-    Data kelas occupied (kelas 1) jauh lebih sedikit dari data kelas not occupied (kelas 0). Hal ini dapat memberikan bias pada model. Untuk mencegahnya, dilakukan oversampling dengan menggunakan metode SMOTE. Metode SMOTE dipilih karena algoritmanya yang cukup sederhana dibandingkan metode lain, namun dapat mengurangi resiko overfitting yang muncul dari random oversampling.
+    Data kelas occupied (kelas 1) jauh lebih sedikit dari data kelas not occupied (kelas 0). Hal ini dapat memberikan bias pada model. Untuk mencegahnya, dilakukan oversampling dengan menggunakan metode SMOTE. Metode SMOTE dipilih karena algoritmanya yang cukup sederhana dibandingkan metode lain, namun dapat mengurangi resiko overfitting yang dapat muncul dari random oversampling.
 
 ## 5. Modeling
 
@@ -172,9 +172,9 @@ Proses improvement pada model akan dilakukan dengan hyperparameter tuning menggu
 - max_features (jumlah fitur pada setiap split): sqrt, log2, None
 - min_samples_split : 2 sampai 6
 
-Dari rentang di atas, beberapa model dibuat dengan hyperparameter acak. Kemudian, masing-masing model dilatih dan diuji akurasinya dengan cross-validation. Lalu dipilih model dengan akurasi terbaik.
+Dari rentang di atas, beberapa model dibuat dengan hyperparameter acak. Kemudian, masing-masing model dilatih dan diuji akurasinya dengan cross-validation. Dari model-model tersebut, dipilih model dengan akurasi terbaik.
 
-Setelah membuat dan melatih model baseline dan model yang sudah di-tuned, dilakukan interpretasi model dengan mengukur *feature importances*, yakni mengukur fitur mana yang paling berpengaruh terhadap prediksi model. *Feature importances* dapat dihitung dengan memanggil method `feature_importances_` pada model.
+Setelah membuat dan melatih model baseline dan model yang sudah di-tuned, dilakukan interpretasi model dengan mengukur *feature importances*, yakni mengukur fitur mana yang paling berpengaruh terhadap prediksi model.
 
 Tahapan melakukan modellingnya adalah sebagai berikut:
 
@@ -204,7 +204,7 @@ Tahapan melakukan modellingnya adalah sebagai berikut:
 
 5. Interpretasi model
 
-    Berikut adalah hasil perhitungan *feature importances* dari model baseline dan model yang sudah di-tuned:
+    *Feature importances* dapat dihitung dengan menggunakan `feature_importances_` pada model. Berikut adalah hasil perhitungan *feature importances* dari model baseline dan model yang sudah di-tuned:
 
     ![](pic/05-01.png)
 
@@ -260,7 +260,7 @@ Metrik evaluasi model yang digunakan adalah sebagai berikut:
 
     ROC-AUC score adalah skor yang didapat dari grafik ROC (Receiver Operating Characteristics). Grafik ROC sendiri adalah grafik yang didapat dengan memplot True Positive Rate (TPR) atau Recall dengan False Negative Rate (FPR) di setiap threshold yang berbeda.
 
-    Rumus dari FPR adalah sebagai berikut:
+    FPR mengukur jumlah false positif dari total prediksi negatif dari model. Rumus dari FPR adalah sebagai berikut:
 
     $$\text{FPR} = \frac{FP}{FP + TN}$$
 
@@ -275,7 +275,7 @@ Metrik evaluasi model yang digunakan adalah sebagai berikut:
 
     AUC (Area Under Curve) menunjukkan luas daerah di bawah grafik ROC. Nilainya memiliki rentang dari 0 hingga 1. Nilai AUC mendekati 1 menunjukkan performa yang baik, sedangkan nilai AUC sekitar 0.5 menandakan performa yang tidak lebih baik dari memilih kelas secara acak. Nilai AUC dibawah 0.5 menandakan performa yang lebih buruk dari prediksi acak.
 
-Dibawah adalah nilai accuracy, F1-Score, serta ROC-AUC score dari model baseline dan model yang sudah dilakukan hyperparameter tuning. Nilai metrik didapat menggunakan data testing.
+Dibawah adalah nilai accuracy, F1 Score, serta ROC-AUC score dari model baseline dan model yang sudah dilakukan hyperparameter tuning. Nilai metrik didapat menggunakan data testing.
 
 |           | Baseline |   Tuned  |
 |----------:|:--------:|:--------:|
