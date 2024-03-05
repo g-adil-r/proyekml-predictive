@@ -203,7 +203,8 @@ Tahapan melakukan modellingnya adalah sebagai berikut:
 4. Melakukan Random Search pada model Random Forest
 
     Random search juga menggunakan training data yang sudah dilakukan SMOTE
-    Model yang memiliki performa terbaik setelah melakukan random search adalah yang memiliki parameter sebagai berikut:
+
+    Dari random search yang dilakukan, model yang memiliki accuracy adalah yang memiliki parameter sebagai berikut:
 
     | Hyperparameter    | Value  |
     |:------------------|:------:|
@@ -309,7 +310,11 @@ Berikut adalah diagram dari tabel diatas:
 
 _Gambar 6.3: Diagram nilai metrik pada model baseline dan yang sudah di-tune_
 
-Dari tabel 6.1 dan gambar 6.3 tersebut, terlihat bahwa model baseline memiliki akurasi dan f1 score yang lebih baik dari model yang di-tune pada data training. Namun pada data test, model baseline memiliki akurasi dan f1 score yang lebih buruk dari model yang di-tune
+Dari tabel 6.1 dan gambar 6.3 tersebut, didapat hasil evaluasi sebagai berikut:
+
+- Nilai accuracy meningkat dari 0.970685 pada model baseline menjadi 0.988967 pada model tuned. Ini menunjukkan bahwa model tuned lebih akurat dalam membuat prediksi dibandingkan dengan model baseline.
+- Nilai F1 Score meningkat dari 0.940328 pada model baseline menjadi 0.977734 pada model tuned, menunjukkan peningkatan kinerja model dalam memprediksi kelas positif.
+- Nilai ROC-AUC meningkat dari 0.963449 pada model baseline menjadi 0.991250 pada model tuned, menunjukkan bahwa model tuned memiliki kemampuan yang lebih baik untuk membedakan antara kelas positif dan negatif.
 
 Berikut adalah diagram confusion matrix menggunakan dataset test dari masing-masing model:
 
@@ -335,6 +340,8 @@ Dari gambar 6.4, didapat observasi berikut:
 
 Dari diagram ini, kita dapat melihat bahwa model yang sudah di-tune memiliki performa yang lebih baik dibandingkan dengan Model Baseline, dengan jumlah kesalahan prediksi yang lebih sedikit. Selain itu, jumlah False Positive cenderung lebih besar daripada jumlah False Negative.
 
-Dari hasil evaluasi diatas, didapat bahwa hyperparameter tuning dapat meningkatkan performa pada model Random Forest Classifier, terutama dalam kasus deteksi hunian.
+## 7. Kesimpulan
+
+Dari hasil evaluasi diatas, didapat bahwa hyperparameter tuning dapat meningkatkan performa pada model Random Forest Classifier untuk deteksi hunian. Model yang sudah di-tune menunjukkan nilai akurasi, skor F1, dan skor ROC-AUC yang lebih tinggi, serta memiliki confusion matrix yang lebih baik. Dalam konteks bisnis, peningkatan performa model ini sangat berharga. Dengan model yang lebih akurat, kita dapat lebih efisien dalam mengelola energi yang pada akhirnya dapat menghemat biaya. Selain itu, model yang lebih akurat juga dapat meningkatkan keamanan dengan mendeteksi keberadaan orang dalam ruangan dengan lebih tepat. Oleh karena itu, peningkatan performa ini dapat memberikan nilai tambah yang signifikan bagi bisnis.
 
 ## Referensi:
