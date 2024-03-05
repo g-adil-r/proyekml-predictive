@@ -27,15 +27,15 @@ Berdasarkan latar belakang di atas, perlu dikembangkan sebuah sistem deteksi hun
 - Dari serangkaian fitur yang ada, fitur apa yang paling berpengaruh terhadap deteksi hunian?
 - Berdasarkan fitur tertentu, apa hasil deteksi hunian yang tepat?
 
-Keberhasilan proyek ML untuk deteksi hunian akan memberikan manfaat signifikan bagi bisnis, di antaranya:
-- Pengurangan konsumsi energi dan biaya operasional gedung
-- Penggunaan dalam sistem keamanan
-- Mengoptimalkan penggunaan ruang dan sumber daya.
-
 ### Goals
 Untuk menjawab pertanyaan tersebut, *predictive modelling* dibuat dengan tujuan atau *goals* sebagai berikut:
 - Menentukan fitur yang paling berpengaruh terhadap deteksi hunian
 - Membuat model *machine learning* yang dapat memprediksi hunian seakurat mungkin berdasarkan fitur-fitur yang ada
+
+Keberhasilan proyek ML untuk deteksi hunian akan memberikan manfaat signifikan bagi bisnis, di antaranya:
+- Pengurangan konsumsi energi dan biaya operasional gedung
+- Penggunaan dalam sistem keamanan
+- Mengoptimalkan penggunaan ruang dan sumber daya.
 
 ### Solution statements
 Untuk mencapai tujuan tersebut, solusi yang perlu dilakukan adalah sebagai berikut:
