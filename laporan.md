@@ -148,7 +148,7 @@ Preprocessing data di bawah ini dilakukan pada data training.
 
 ## 5. Modeling
 
-Model yang digunakan untuk deteksi hunian ini adalah model Random Forest Classifier. Random Forest adalah model ensemble yang terdiri dari beberapa model decision tree. Tiap model decision tree memiliki hyperparameter yang berbeda dan dilatih pada beberapa bagian (subset) data yang berbeda. Prediksi akhir diambil dari prediksi terbanyak pada seluruh tree.
+Model yang digunakan untuk deteksi hunian ini adalah model Random Forest Classifier. Random Forest adalah model ensemble yang terdiri dari beberapa model decision tree. Tiap model decision tree memiliki hyperparameter yang berbeda dan dilatih pada beberapa bagian (subset) data yang berbeda. Prediksi akhir diambil dari prediksi terbanyak pada seluruh tree. Model ini memiliki resiko overfitting yang rendah serta implementasinya yang cukup mudah.
 
 Kelebihan dari algoritma ini adalah:
 - Mampu menangani noise dan variasi dalam data
