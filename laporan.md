@@ -343,9 +343,15 @@ Dari hasil evaluasi diatas, didapat bahwa hyperparameter tuning dapat meningkatk
 ## Referensi:
 
 [^1]: K. Sun, Q. Zhao, and J. Zou, “A review of building occupancy measurement systems,” Energy Build., vol. 216, p. 109965, Jun. 2020, doi: 10.1016/j.enbuild.2020.109965.
+
 [^2]: T. Fryza, T. Bravenec, and Z. Kohl, “Security and Reliability of Room Occupancy Detection Using Probe Requests in Smart Buildings,” in 2023 33rd International Conference Radioelektronika (RADIOELEKTRONIKA), Pardubice, Czech Republic: IEEE, Apr. 2023, pp. 1–6. doi: 10.1109/RADIOELEKTRONIKA57919.2023.10109085.
+
 [^3]: V. Verma, . D., P. Dash, and Dr. V. Kumar, “Occupancy Based Lighting Control Strategy Using a Network of Motion Detection Sensors for Energy Conservation in a Building,” Int. J. RECENT TRENDS Eng. Res., vol. 6, no. 6, pp. 33–38, Jun. 2020, doi: 10.23883/IJRTER.2020.6043.H2IOM.
+
 [^4]: A. Hammoud, M. Deriaz, and D. Konstantas, “UltraSense: A Self-Calibrating Ultrasound-Based Room Occupancy Sensing System,” Procedia Comput. Sci., vol. 109, pp. 75–83, 2017, doi: 10.1016/j.procs.2017.05.297.
+
 [^5]: O. E. Ouahabi, C. Fragner, A. P. Weiss, and E. Leitgeb, “Occupancy Determination by Backscattered Visible Light Sensing,” in 2023 46th MIPRO ICT and Electronics Convention (MIPRO), Opatija, Croatia: IEEE, May 2023, pp. 280–285. doi: 10.23919/MIPRO57284.2023.10159964.
+
 [^6]: L. M. Candanedo and V. Feldheim, “Accurate occupancy detection of an office room from light, temperature, humidity and CO 2 measurements using statistical learning models,” Energy Build., vol. 112, pp. 28–39, Jan. 2016, doi: 10.1016/j.enbuild.2015.11.071.
+
 [^7]: S. Hu, P. Wang, C. Hoare, and J. O’Donnell, “Building Occupancy Detection and Localization Using CCTV Camera and Deep Learning,” IEEE Internet Things J., vol. 10, no. 1, pp. 597–608, Jan. 2023, doi: 10.1109/JIOT.2022.3201877.
