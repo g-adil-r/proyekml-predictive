@@ -134,7 +134,11 @@ Berikut adalah hasil analisis dari data tersebut:
 
     _Gambar 3.5: Correlation matrix_
 
-    Dari gambar 3.5, terlihat bahwa fitur Light berkorelasi paling tinggi dengan fitur Occupancy dengan koefisien sebesar 0,91. Fitur Humidity berkorelasi paling rendah dengan koefisien sebesar 0,05.
+    Dari gambar 3.5, didapat observasi sebagai berikut:
+    
+    - Fitur Light memiliki korelasi tertinggi dengan Occupancy dengan nilai koefisien sebesar 0.91. Hal ini menunjukkan bahwa intensitas cahaya sangat berkaitan dengan keberadaan orang dalam ruangan tersebut, yang dapat disebabkan oleh seseorang memasuki dan menghuni ruangan, seperti menyalakan lampu.
+    - Fitur Temperature dan CO2 juga memiliki korelasi positif dengan Occupancy meskipun tidak sekuat fitur Light, dengan nilai koefisien masing-masing sebesar 0,56 dan 0,5. Hal ini menunjukkan bahwa suhu dan kadar CO2 dalam ruangan juga meningkat ketika ruangan tersebut dihuni, yang dapat disebabkan oleh kegiatan manusia di dalam ruangan dan pernafasan manusia.
+    - Fitur Humidity dan HumidityRatio memiliki korelasi yang lebih rendah dengan Occupancy. Hal ini menunjukkan bahwa kelembaban udara dan rasio kelembaban mungkin tidak dipengaruhi secara signifikan oleh keberadaan orang dalam ruangan, atau pengaruhnya tidak sejelas fitur lain seperti intensitas cahaya.
     
 ## 4. Data Preparation
 
@@ -155,7 +159,7 @@ Preprocessing data di bawah ini dilakukan pada data training.
 
 ## 5. Modeling
 
-Model yang digunakan untuk deteksi hunian ini adalah model Random Forest Classifier. Random Forest adalah model ensemble yang terdiri dari beberapa model decision tree. Tiap model decision tree memiliki hyperparameter yang berbeda dan dilatih pada beberapa bagian (subset) data yang berbeda. Prediksi akhir diambil dari prediksi terbanyak pada seluruh tree. Model ini memiliki resiko overfitting yang rendah serta implementasinya yang cukup mudah.
+Model yang digunakan untuk deteksi hunian ini adalah model Random Forest Classifier. Random Forest adalah model ensemble yang terdiri dari beberapa model decision tree. Tiap model decision tree memiliki hyperparameter yang berbeda dan dilatih pada beberapa bagian (subset) data yang berbeda. Prediksi akhir diambil dari prediksi terbanyak pada seluruh tree. Model ini dipilih karena memiliki resiko overfitting yang rendah serta implementasinya yang cukup mudah.
 
 Kelebihan dari algoritma ini adalah:
 - Mampu menangani noise dan variasi dalam data
