@@ -12,6 +12,8 @@ Dalam aspek keamanan, deteksi hunian dapat dimanfaatkan untuk penyelamatan dari 
 
 Berbagai teknik telah diusulkan untuk mengatasi masalah ini. Teknik yang populer adalah dengan menggunakan sensor passive infrared (PIR)[^3] dan deteksi berbasis ultrasonic[^4]. Pendekatan lainnya meliputi menggunakan Wi-Fi untuk mendeteksi perangkat pada penghuni ruangan[^2] dan menggunakan backscattered light sensing, yang mendeteksi pantulan cahaya dari lampu yang dipantulkan oleh penghuni ruangan[^5]. Metode dengan menggunakan machine learning juga banyak diterapkan, misalnya dengan menggunakan model ML statistik pada data sensor[^6] maupun menggunakan kamera CCTV yang disertai algoritma deep learning[^7].
 
+Proyek ini ditujukan untuk mengeksplorasi teknik Machine Learning dengan melakukan hyperparameter tuning pada model yang ada, yang memungkinkan untuk mencapai performansi yang lebih tinggi pada model. Selain itu, proyek ini juga ditujukan untuk memperoleh pemahaman yang lebih mendalam tentang hubungan antara fitur-fitur dalam data dan hunian ruangan. Pemahaman ini dapat membantu untuk membuat keputusan yang lebih baik, misalnya dalam manajemen energi.
+
 ## 2. Business Understanding
 
 ### Problem Statements
@@ -136,7 +138,7 @@ Berikut adalah hasil analisis dari data tersebut:
 
     Dari gambar 3.5, didapat observasi sebagai berikut:
     
-    - Fitur Light memiliki korelasi tertinggi dengan Occupancy dengan nilai koefisien sebesar 0.91. Hal ini menunjukkan bahwa intensitas cahaya sangat berkaitan dengan keberadaan orang dalam ruangan tersebut, yang dapat disebabkan oleh seseorang memasuki dan menghuni ruangan, seperti menyalakan lampu.
+    - Fitur Light memiliki korelasi tertinggi dengan Occupancy dengan nilai koefisien sebesar 0,91. Hal ini menunjukkan bahwa intensitas cahaya sangat berkaitan dengan keberadaan orang dalam ruangan tersebut, yang dapat disebabkan oleh seseorang memasuki dan menghuni ruangan, seperti menyalakan lampu.
     - Fitur Temperature dan CO2 juga memiliki korelasi positif dengan Occupancy meskipun tidak sekuat fitur Light, dengan nilai koefisien masing-masing sebesar 0,56 dan 0,5. Hal ini menunjukkan bahwa suhu dan kadar CO2 dalam ruangan juga meningkat ketika ruangan tersebut dihuni, yang dapat disebabkan oleh kegiatan manusia di dalam ruangan dan pernafasan manusia.
     - Fitur Humidity dan HumidityRatio memiliki korelasi yang lebih rendah dengan Occupancy. Hal ini menunjukkan bahwa kelembaban udara dan rasio kelembaban mungkin tidak dipengaruhi secara signifikan oleh keberadaan orang dalam ruangan, atau pengaruhnya tidak sejelas fitur lain seperti intensitas cahaya.
     
