@@ -12,7 +12,7 @@ Dalam aspek keamanan, deteksi hunian dapat dimanfaatkan untuk penyelamatan dari 
 
 Berbagai teknik telah diusulkan untuk mengatasi masalah ini. Teknik yang populer adalah dengan menggunakan sensor passive infrared (PIR)[^3] dan deteksi berbasis ultrasonic[^4]. Pendekatan lainnya meliputi menggunakan Wi-Fi untuk mendeteksi perangkat pada penghuni ruangan[^2] dan menggunakan backscattered light sensing, yang mendeteksi pantulan cahaya dari lampu yang dipantulkan oleh penghuni ruangan[^5]. Metode dengan menggunakan machine learning juga banyak diterapkan, misalnya dengan menggunakan model ML statistik pada data sensor[^6] maupun menggunakan kamera CCTV yang disertai algoritma deep learning[^7].
 
-Proyek ini ditujukan untuk mengeksplorasi teknik Machine Learning dengan melakukan hyperparameter tuning pada model yang ada, yang memungkinkan untuk mencapai performansi yang lebih tinggi pada model. Selain itu, proyek ini juga ditujukan untuk memperoleh pemahaman yang lebih mendalam tentang hubungan antara fitur-fitur dalam data dan hunian ruangan. Pemahaman ini dapat membantu untuk membuat keputusan yang lebih baik, misalnya dalam manajemen energi.
+Proyek ini ditujukan untuk mengeksplorasi teknik Machine Learning untuk deteksi hunian dengan melakukan hyperparameter tuning pada model yang ada, yang memungkinkan untuk mencapai performansi yang lebih tinggi pada model. Selain itu, proyek ini juga ditujukan untuk memperoleh pemahaman yang lebih mendalam tentang hubungan antara fitur-fitur dalam data dan hunian ruangan. Pemahaman ini dapat membantu untuk membuat keputusan yang lebih baik, misalnya dalam manajemen energi.
 
 ## 2. Business Understanding
 
